@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3506tyw8kdap"]
+
+[ext_resource type="AudioStream" uid="uid://byv51q56weo27" path="res://assets/sounds/MenuMusik.ogg" id="1_532bo"]
+[ext_resource type="Texture2D" uid="uid://4avrd681j7j7" path="res://assets/images/menuBackground.png" id="1_gd8ac"]
+[ext_resource type="FontFile" uid="uid://c0mwbiarmijd8" path="res://AsusRog-Regular.ttf" id="2_532bo"]
+
+[node name="Result" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="resultMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_532bo")
+
+[node name="Background_result" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(610, 400)
+texture = ExtResource("1_gd8ac")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 420.0
+offset_top = 80.0
+offset_right = 767.0
+offset_bottom = 245.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.42922837, 0.07730328, 0.06441964, 1)
+theme_override_fonts/font = ExtResource("2_532bo")
+theme_override_font_sizes/font_size = 60
+text = "YOU WON!"
+
+[node name="Restart" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.36396736, 0.59348905, 0.8129441, 1)
+theme_override_fonts/font = ExtResource("2_532bo")
+theme_override_font_sizes/font_size = 22
+text = "Restart"
+
+[node name="ChangeCharacter" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8357183, 3.2247603e-06, 7.70092e-07, 1)
+theme_override_fonts/font = ExtResource("2_532bo")
+theme_override_font_sizes/font_size = 21
+text = "Change Character"
+
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.8776587, 0, 1)
+theme_override_fonts/font = ExtResource("2_532bo")
+theme_override_font_sizes/font_size = 21
+text = "Quit"

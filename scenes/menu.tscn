@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://blhr7gqotijem"]
+
+[ext_resource type="Script" uid="uid://cdbx178pqlv5b" path="res://scenes/menu.gd" id="1_yqeox"]
+[ext_resource type="Texture2D" uid="uid://4avrd681j7j7" path="res://assets/images/menuBackground.png" id="2_con2f"]
+[ext_resource type="AudioStream" uid="uid://byv51q56weo27" path="res://assets/sounds/MenuMusik.ogg" id="3_4ytvr"]
+[ext_resource type="FontFile" uid="uid://c0mwbiarmijd8" path="res://AsusRog-Regular.ttf" id="3_mhnvy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ytvr"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_yqeox")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(550, 400)
+texture = ExtResource("2_con2f")
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_4ytvr")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MenuContainer" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/MenuContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.27872726, 0.051636547, 0.07934671, 1)
+theme_override_colors/font_shadow_color = Color(0.5896001, 0.4288, 0.67, 0.023529412)
+theme_override_fonts/font = ExtResource("3_mhnvy")
+theme_override_font_sizes/font_size = 250
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4ytvr")
+text = "My RPG"
+
+[node name="StartButton" type="Button" parent="CenterContainer/MenuContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43418434, 0.6524385, 0.9613249, 1)
+theme_override_fonts/font = ExtResource("3_mhnvy")
+theme_override_font_sizes/font_size = 40
+text = "Start Game"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/MenuContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.19741806, 0.5457928, 0.31212604, 1)
+theme_override_fonts/font = ExtResource("3_mhnvy")
+theme_override_font_sizes/font_size = 40
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/MenuContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87, 0.261, 0.261, 1)
+theme_override_fonts/font = ExtResource("3_mhnvy")
+theme_override_font_sizes/font_size = 40
+text = "Quit"

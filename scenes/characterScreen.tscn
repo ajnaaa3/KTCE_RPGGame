@@ -1,0 +1,140 @@
+[gd_scene load_steps=4 format=3 uid="uid://xtaqybp11ojp"]
+
+[ext_resource type="AudioStream" uid="uid://b0uvry4yif0tf" path="res://assets/sounds/CharacterMusic.wav" id="1_628n0"]
+[ext_resource type="Texture2D" uid="uid://drcyxktcwnrlk" path="res://assets/images/CharacterMenu.png" id="2_i4ucb"]
+[ext_resource type="FontFile" uid="uid://c0mwbiarmijd8" path="res://AsusRog-Regular.ttf" id="3_diyn2"]
+
+[node name="characterScreen" type="Node2D"]
+
+[node name="BGMMusic" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("1_628n0")
+volume_db = 2.0
+
+[node name="Background_character" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = -2
+position = Vector2(560, 330)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_i4ucb")
+
+[node name="BasisContainer" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -414.0
+offset_right = 200.0
+offset_bottom = 414.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MenuButtonC" type="MarginContainer" parent="BasisContainer"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 110.0
+offset_top = 470.0
+offset_right = 210.0
+offset_bottom = 500.0
+mouse_filter = 2
+
+[node name="BackButton" type="Button" parent="BasisContainer/MenuButtonC"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_diyn2")
+text = "Menu"
+
+[node name="Mitte_Buchseiten" type="HBoxContainer" parent="BasisContainer"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 250.0
+offset_top = 500.0
+offset_right = 900.0
+offset_bottom = 930.0
+pivot_offset = Vector2(1, 0)
+mouse_filter = 2
+theme_override_constants/separation = 250
+
+[node name="links" type="VBoxContainer" parent="BasisContainer/Mitte_Buchseiten"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 30
+
+[node name="Player1" type="PanelContainer" parent="BasisContainer/Mitte_Buchseiten/links"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Label1" type="Label" parent="BasisContainer/Mitte_Buchseiten/links/Player1"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.41551143, 0, 0.16007765, 1)
+theme_override_fonts/font = ExtResource("3_diyn2")
+theme_override_font_sizes/font_size = 24
+text = "Player 1"
+
+[node name="Player3" type="PanelContainer" parent="BasisContainer/Mitte_Buchseiten/links"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="BasisContainer/Mitte_Buchseiten/links/Player3"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.07331737, 0.34280545, 0, 1)
+theme_override_fonts/font = ExtResource("3_diyn2")
+theme_override_font_sizes/font_size = 24
+text = "Player 3
+"
+
+[node name="rechts" type="VBoxContainer" parent="BasisContainer/Mitte_Buchseiten"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 30
+
+[node name="Player2" type="PanelContainer" parent="BasisContainer/Mitte_Buchseiten/rechts"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="BasisContainer/Mitte_Buchseiten/rechts/Player2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.11917407, 6.545782e-06, 0.7381675, 1)
+theme_override_fonts/font = ExtResource("3_diyn2")
+theme_override_font_sizes/font_size = 24
+text = "Player 2"
+
+[node name="Player4" type="PanelContainer" parent="BasisContainer/Mitte_Buchseiten/rechts"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="BasisContainer/Mitte_Buchseiten/rechts/Player4"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44422638, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_diyn2")
+theme_override_font_sizes/font_size = 24
+text = "Player 4"
+
+[node name="StartButtonC" type="MarginContainer" parent="BasisContainer"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 650.0
+offset_top = 950.0
+offset_right = 950.0
+offset_bottom = 990.0
+mouse_filter = 2
+
+[node name="StartGameButton" type="Button" parent="BasisContainer/StartButtonC"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_diyn2")
+theme_override_font_sizes/font_size = 20
+text = "Start Game"
