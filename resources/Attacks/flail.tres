@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c5qyp7qkianqr"]
+
+[ext_resource type="Script" uid="uid://da5gwh6uvs7j6" path="res://resources/baseAttack.gd" id="1_s1qtj"]
+
+[resource]
+script = ExtResource("1_s1qtj")
+name = "Flail"
+power = 0

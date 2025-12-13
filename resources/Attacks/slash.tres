@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ld07w1l4ssgc"]
+
+[ext_resource type="Script" uid="uid://da5gwh6uvs7j6" path="res://resources/baseAttack.gd" id="1_jttlq"]
+
+[resource]
+script = ExtResource("1_jttlq")
+name = "Slash"
+power = 15
+accuracy = 0.9
