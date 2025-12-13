@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Character" load_steps=8 format=3 uid="uid://cdwqqw1o8427g"]
+
+[ext_resource type="Script" uid="uid://da5gwh6uvs7j6" path="res://resources/baseAttack.gd" id="1_ub53j"]
+[ext_resource type="Resource" uid="uid://c5qyp7qkianqr" path="res://resources/Attacks/strong_attack.tres" id="2_l2dc2"]
+[ext_resource type="Resource" uid="uid://d4i15l2bkgu55" path="res://resources/Attacks/nutral_attack.tres" id="3_3rhxy"]
+[ext_resource type="Resource" uid="uid://ld07w1l4ssgc" path="res://resources/Attacks/slash.tres" id="4_u63nt"]
+[ext_resource type="Resource" uid="uid://bn4v3rdxt5r5m" path="res://resources/Attacks/basic_attack.tres" id="5_l3e2i"]
+[ext_resource type="Script" uid="uid://c2ll3kk7yaihn" path="res://resources/baseCharacter.gd" id="6_yi031"]
+[ext_resource type="Texture2D" uid="uid://dsvs00hbuq2yc" path="res://assets/images/Sprites/11.png" id="7_okc00"]
+
+[resource]
+script = ExtResource("6_yi031")
+name = "Water"
+texture = ExtResource("7_okc00")
+max_hp = 110
+attack = 15
+defense = 15
+speed = 10
+type = 1
+moveset = Array[ExtResource("1_ub53j")]([ExtResource("2_l2dc2"), ExtResource("3_3rhxy"), ExtResource("4_u63nt"), ExtResource("5_l3e2i")])
