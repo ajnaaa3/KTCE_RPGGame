@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Character" load_steps=8 format=3 uid="uid://b61yhfg8k3364"]
+
+[ext_resource type="Script" uid="uid://da5gwh6uvs7j6" path="res://resources/baseAttack.gd" id="1_f1l3a"]
+[ext_resource type="Script" uid="uid://c2ll3kk7yaihn" path="res://resources/baseCharacter.gd" id="1_md0o0"]
+[ext_resource type="Resource" uid="uid://c5qyp7qkianqr" path="res://resources/Attacks/flail.tres" id="2_hqfd5"]
+[ext_resource type="Texture2D" uid="uid://dsvs00hbuq2yc" path="res://assets/images/Sprites/11.png" id="2_r6lb3"]
+[ext_resource type="Resource" uid="uid://d4i15l2bkgu55" path="res://resources/Attacks/setAlight.tres" id="3_bgh7o"]
+[ext_resource type="Resource" uid="uid://ld07w1l4ssgc" path="res://resources/Attacks/slash.tres" id="4_aji7k"]
+[ext_resource type="Resource" uid="uid://bn4v3rdxt5r5m" path="res://resources/Attacks/tackle.tres" id="5_w304r"]
+
+[resource]
+script = ExtResource("1_md0o0")
+name = "Gumbotron"
+texture = ExtResource("2_r6lb3")
+max_hp = 60
+defense = 15
+speed = 10
+moveset = Array[ExtResource("1_f1l3a")]([ExtResource("2_hqfd5"), ExtResource("3_bgh7o"), ExtResource("4_aji7k"), ExtResource("5_w304r")])

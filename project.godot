@@ -11,6 +11,10 @@ config_version=5
 [application]
 
 config/name="RPG"
-run/main_scene="uid://b3506tyw8kdap"
+run/main_scene="uid://blhr7gqotijem"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="RPG"

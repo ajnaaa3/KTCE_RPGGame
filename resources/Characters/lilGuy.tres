@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Character" load_steps=8 format=3 uid="uid://b7yjsbyv5smjm"]
+
+[ext_resource type="Script" uid="uid://da5gwh6uvs7j6" path="res://resources/baseAttack.gd" id="1_110pa"]
+[ext_resource type="Script" uid="uid://c2ll3kk7yaihn" path="res://resources/baseCharacter.gd" id="1_hps1e"]
+[ext_resource type="Resource" uid="uid://c5qyp7qkianqr" path="res://resources/Attacks/flail.tres" id="2_jl37k"]
+[ext_resource type="Texture2D" uid="uid://lju4uiedgigj" path="res://assets/images/Sprites/02.png" id="2_v2gc2"]
+[ext_resource type="Resource" uid="uid://d4i15l2bkgu55" path="res://resources/Attacks/setAlight.tres" id="3_wwean"]
+[ext_resource type="Resource" uid="uid://ld07w1l4ssgc" path="res://resources/Attacks/slash.tres" id="4_eawel"]
+[ext_resource type="Resource" uid="uid://bn4v3rdxt5r5m" path="res://resources/Attacks/tackle.tres" id="5_aqmg4"]
+
+[resource]
+script = ExtResource("1_hps1e")
+name = "Lil' Guy"
+texture = ExtResource("2_v2gc2")
+max_hp = 20
+attack = 20
+defense = 0
+speed = 1
+moveset = Array[ExtResource("1_110pa")]([ExtResource("2_jl37k"), ExtResource("3_wwean"), ExtResource("4_eawel"), ExtResource("5_aqmg4")])

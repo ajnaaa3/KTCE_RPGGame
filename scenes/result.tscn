@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3506tyw8kdap"]
+[gd_scene load_steps=5 format=3 uid="uid://b3506tyw8kdap"]
 
 [ext_resource type="AudioStream" uid="uid://byv51q56weo27" path="res://assets/sounds/MenuMusik.ogg" id="1_532bo"]
+[ext_resource type="Script" uid="uid://c7nqqerub4ffk" path="res://scenes/result.gd" id="1_dtx8l"]
 [ext_resource type="Texture2D" uid="uid://4avrd681j7j7" path="res://assets/images/menuBackground.png" id="1_gd8ac"]
 [ext_resource type="FontFile" uid="uid://c0mwbiarmijd8" path="res://AsusRog-Regular.ttf" id="2_532bo"]
 
 [node name="Result" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_dtx8l")
 
 [node name="resultMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_532bo")
@@ -45,6 +47,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.36396736, 0.59348905, 0.8129441, 1)
 theme_override_fonts/font = ExtResource("2_532bo")
 theme_override_font_sizes/font_size = 22
+action_mode = 0
 text = "Restart"
 
 [node name="ChangeCharacter" type="Button" parent="CenterContainer/VBoxContainer"]

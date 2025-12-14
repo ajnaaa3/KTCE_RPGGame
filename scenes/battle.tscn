@@ -1,8 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvx4b1rqtup32"]
+[gd_scene load_steps=13 format=3 uid="uid://bvx4b1rqtup32"]
 
 [ext_resource type="Script" uid="uid://dwpc2b0m8du21" path="res://scenes/battle.gd" id="1_dn72j"]
+[ext_resource type="Resource" uid="uid://b7yjsbyv5smjm" path="res://resources/Characters/lilGuy.tres" id="2_4k1nj"]
 [ext_resource type="Texture2D" uid="uid://dpkfk7j82hlsn" path="res://assets/images/JWDLx5AZBtI.jpg" id="2_th188"]
+[ext_resource type="Resource" uid="uid://b61yhfg8k3364" path="res://resources/Characters/gumbotron.tres" id="3_f4pi3"]
 [ext_resource type="AudioStream" uid="uid://cujvqechnsxt3" path="res://assets/sounds/dova_Mauve Rhopalocera_master.mp3" id="3_p1qf1"]
+[ext_resource type="Texture2D" uid="uid://dsvs00hbuq2yc" path="res://assets/images/Sprites/11.png" id="4_a12nh"]
+[ext_resource type="Texture2D" uid="uid://lju4uiedgigj" path="res://assets/images/Sprites/02.png" id="5_lpir7"]
+[ext_resource type="Script" uid="uid://h605uw8ba6gf" path="res://scenes/attacks.gd" id="6_f4pi3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a12nh"]
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1qf1"]
 bg_color = Color(1, 0.7518053, 0.44741547, 1)
@@ -10,133 +18,168 @@ bg_color = Color(1, 0.7518053, 0.44741547, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_th188"]
 bg_color = Color(0.7649482, 1, 0.74247926, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpir7"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+
 [node name="battle" type="Node2D"]
 script = ExtResource("1_dn72j")
+player = ExtResource("3_f4pi3")
+enemy = ExtResource("2_4k1nj")
 
 [node name="battleMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_p1qf1")
 
 [node name="Background_fight" type="Sprite2D" parent="."]
 z_index = -100
-position = Vector2(550, 350)
+position = Vector2(573, 307)
 texture = ExtResource("2_th188")
 
-[node name="EnemyIcon" type="ColorRect" parent="."]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
-offset_left = 750.0
-offset_top = 250.0
-offset_right = 850.0
-offset_bottom = 350.0
-color = Color(0.6392157, 0.09411765, 0.050980393, 1)
-metadata/_edit_use_anchors_ = true
+[node name="PlayerPanel" type="Panel" parent="."]
+offset_left = 3.0
+offset_top = 513.0
+offset_right = 1151.0
+offset_bottom = 646.0
 
-[node name="EnemyName" type="Label" parent="EnemyIcon"]
-unique_name_in_owner = true
+[node name="Attacks" type="HBoxContainer" parent="PlayerPanel"]
+layout_mode = 0
+offset_left = 504.0
+offset_right = 1147.0
+offset_bottom = 133.0
+script = ExtResource("6_f4pi3")
+
+[node name="AttackButton1" type="Button" parent="PlayerPanel/Attacks"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Attack 3"
+
+[node name="AttackButton2" type="Button" parent="PlayerPanel/Attacks"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Attack 3"
+
+[node name="AttackButton3" type="Button" parent="PlayerPanel/Attacks"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Attack 3"
+
+[node name="AttackButton4" type="Button" parent="PlayerPanel/Attacks"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Attack 4"
+
+[node name="Textbox" type="Panel" parent="PlayerPanel"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 499.0
+offset_bottom = 135.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_a12nh")
+
+[node name="Label" type="Label" parent="PlayerPanel/Textbox"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 1.2700001
-anchor_right = 0.5
-anchor_bottom = 1.2700001
-offset_left = -30.0
-offset_top = -163.0
-offset_right = 36.0
-offset_bottom = -104.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Choose Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyContainer" type="VBoxContainer" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 784.0
+offset_top = 49.0
+offset_right = 984.0
+offset_bottom = 300.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="EnemyName" type="Label" parent="EnemyContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
 theme_override_colors/font_color = Color(1, 0.09803922, 0.19607843, 1)
 theme_override_font_sizes/font_size = 20
-text = "Enemy
-"
-metadata/_edit_use_anchors_ = true
+text = "Enemy"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="EnemyHPBar" type="ProgressBar" parent="EnemyIcon"]
+[node name="Sprite" type="TextureRect" parent="EnemyContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_a12nh")
+
+[node name="EnemyHPBar" type="ProgressBar" parent="EnemyContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 20)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -149.0
-offset_top = 122.0
-offset_right = 51.0
-offset_bottom = 149.0
-grow_horizontal = 0
+layout_mode = 2
 theme_override_colors/font_color = Color(0.80293787, 0.5057288, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_p1qf1")
 value = 67.0
 
-[node name="PlayerIcon" type="ColorRect" parent="."]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
-offset_left = 300.0
-offset_top = 370.0
-offset_right = 400.0
-offset_bottom = 470.0
-color = Color(0.23921569, 0.023529412, 1, 1)
-metadata/_edit_use_anchors_ = true
+[node name="PlayerContainer" type="VBoxContainer" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 247.0
+offset_top = 221.0
+offset_right = 447.0
+offset_bottom = 472.0
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="PlayerHPBar" type="ProgressBar" parent="PlayerIcon"]
+[node name="PlayerName" type="Label" parent="PlayerContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.10884877, 0.4574958, 0.74108636, 1)
+theme_override_font_sizes/font_size = 20
+text = "Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite" type="TextureRect" parent="PlayerContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_lpir7")
+
+[node name="PlayerHPBar" type="ProgressBar" parent="PlayerContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 20)
-layout_mode = 0
-offset_left = -44.0
-offset_top = 116.0
-offset_right = 156.0
-offset_bottom = 143.0
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.59651214, 3.85046e-07, 1)
 theme_override_styles/fill = SubResource("StyleBoxFlat_th188")
 value = 100.0
 
-[node name="PlayerName" type="Label" parent="PlayerIcon"]
-unique_name_in_owner = true
+[node name="Textbox" type="Panel" parent="."]
+offset_left = 17.0
+offset_top = 520.0
+offset_right = 1140.0
+offset_bottom = 635.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lpir7")
+
+[node name="Label" type="Label" parent="Textbox"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 1.2700001
-anchor_right = 0.5
-anchor_bottom = 1.2700001
-offset_left = -30.0
-offset_top = -164.0
-offset_right = 31.0
-offset_bottom = -105.0
-theme_override_colors/font_color = Color(0.23921569, 0.023529412, 1, 1)
-theme_override_colors/font_outline_color = Color(0.22670749, 0.22670749, 0.22670746, 1)
-theme_override_font_sizes/font_size = 20
-text = "Player
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="Player" type="Container" parent="."]
-unique_name_in_owner = true
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Enemy" type="Container" parent="."]
-unique_name_in_owner = true
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="AttackButtons" type="HBoxContainer" parent="."]
-unique_name_in_owner = true
-offset_left = 176.98509
-offset_top = 529.42004
-offset_right = 566.9851
-offset_bottom = 583.42004
-
-[node name="AttackButton20" type="Button" parent="AttackButtons"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Attacke -20
-Diese Attacke nimmt dir selber -5 HP"
-
-[node name="AttackButton10" type="Button" parent="AttackButtons"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Attacke -10"
-
-[connection signal="pressed" from="AttackButtons/AttackButton20" to="." method="_on_attack_button_20_pressed"]
-[connection signal="pressed" from="AttackButtons/AttackButton10" to="." method="_on_attack_button_10_pressed"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "According to all known laws of aviation, there is no way a bee should be able to fly.
+Its wings are too small to get its fat little body off the ground.
+The bee, of course, flies anyway because bees don't care what humans think is impossible."
+horizontal_alignment = 1
+vertical_alignment = 1
