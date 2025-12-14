@@ -1,19 +1,95 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvx4b1rqtup32"]
+[gd_scene load_steps=17 format=3 uid="uid://bvx4b1rqtup32"]
 
 [ext_resource type="Script" uid="uid://dwpc2b0m8du21" path="res://scenes/battle.gd" id="1_dn72j"]
 [ext_resource type="Resource" uid="uid://b7yjsbyv5smjm" path="res://resources/Characters/lilGuy.tres" id="2_4k1nj"]
 [ext_resource type="Texture2D" uid="uid://dpkfk7j82hlsn" path="res://assets/images/JWDLx5AZBtI.jpg" id="2_th188"]
-[ext_resource type="Resource" uid="uid://b61yhfg8k3364" path="res://resources/Characters/gumbotron.tres" id="3_f4pi3"]
-[ext_resource type="AudioStream" uid="uid://cujvqechnsxt3" path="res://assets/sounds/dova_Mauve Rhopalocera_master.mp3" id="3_p1qf1"]
 [ext_resource type="Texture2D" uid="uid://dsvs00hbuq2yc" path="res://assets/images/Sprites/11.png" id="4_a12nh"]
 [ext_resource type="Texture2D" uid="uid://lju4uiedgigj" path="res://assets/images/Sprites/02.png" id="5_lpir7"]
 [ext_resource type="Script" uid="uid://h605uw8ba6gf" path="res://scenes/attacks.gd" id="6_f4pi3"]
+[ext_resource type="AudioStream" uid="uid://bhrpb4j04qm12" path="res://assets/sounds/output.ogg" id="8_f4pi3"]
+[ext_resource type="AudioStream" uid="uid://clvsbwslrfjut" path="res://assets/sounds/Soundfx/hit.ogg" id="8_yahae"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a12nh"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1qf1"]
 bg_color = Color(1, 0.7518053, 0.44741547, 1)
+
+[sub_resource type="Animation" id="Animation_yahae"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10130787, 0.16535881, 0.26666668, 0.33333334, 0.4346412, 0.49869215, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Name:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f4pi3"]
+resource_name = "damage"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10130787, 0.14432903, 0.2456369, 0.30114806, 0.40245593, 0.45241597, 0.5537238, 0.6022961, 0.703604, 0.76050293, 0.8618108, 0.8986921, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v7i3o"]
+resource_name = "defeat"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Name:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v7i3o"]
+_data = {
+&"RESET": SubResource("Animation_yahae"),
+&"damage": SubResource("Animation_f4pi3"),
+&"defeat": SubResource("Animation_v7i3o")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_th188"]
 bg_color = Color(0.7649482, 1, 0.74247926, 1)
@@ -29,11 +105,8 @@ border_blend = true
 
 [node name="battle" type="Node2D"]
 script = ExtResource("1_dn72j")
-player = ExtResource("3_f4pi3")
+player = ExtResource("2_4k1nj")
 enemy = ExtResource("2_4k1nj")
-
-[node name="battleMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_p1qf1")
 
 [node name="Background_fight" type="Sprite2D" parent="."]
 z_index = -100
@@ -104,7 +177,7 @@ offset_bottom = 300.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="EnemyName" type="Label" parent="EnemyContainer"]
+[node name="Name" type="Label" parent="EnemyContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -128,6 +201,11 @@ theme_override_colors/font_color = Color(0.80293787, 0.5057288, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_p1qf1")
 value = 67.0
 
+[node name="CharacterAnimationPlayer" type="AnimationPlayer" parent="EnemyContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_v7i3o")
+}
+
 [node name="PlayerContainer" type="VBoxContainer" parent="."]
 anchors_preset = 6
 anchor_left = 1.0
@@ -141,7 +219,7 @@ offset_bottom = 472.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="PlayerName" type="Label" parent="PlayerContainer"]
+[node name="Name" type="Label" parent="PlayerContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -164,6 +242,11 @@ theme_override_colors/font_color = Color(0, 0.59651214, 3.85046e-07, 1)
 theme_override_styles/fill = SubResource("StyleBoxFlat_th188")
 value = 100.0
 
+[node name="CharacterAnimationPlayer" type="AnimationPlayer" parent="PlayerContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_v7i3o")
+}
+
 [node name="Textbox" type="Panel" parent="."]
 offset_left = 17.0
 offset_top = 520.0
@@ -183,3 +266,12 @@ Its wings are too small to get its fat little body off the ground.
 The bee, of course, flies anyway because bees don't care what humans think is impossible."
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_f4pi3")
+volume_db = -12.0
+autoplay = true
+
+[node name="SoundFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_yahae")
+volume_db = -2.0

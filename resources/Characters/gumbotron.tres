@@ -14,5 +14,5 @@ name = "Gumbotron"
 texture = ExtResource("2_r6lb3")
 max_hp = 60
 defense = 15
-speed = 10
+speed = 1
 moveset = Array[ExtResource("1_f1l3a")]([ExtResource("2_hqfd5"), ExtResource("3_bgh7o"), ExtResource("4_aji7k"), ExtResource("5_w304r")])
