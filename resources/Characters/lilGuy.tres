@@ -15,5 +15,5 @@ texture = ExtResource("2_v2gc2")
 max_hp = 20
 attack = 20
 defense = 0
-speed = 1
+speed = 10
 moveset = Array[ExtResource("1_110pa")]([ExtResource("2_jl37k"), ExtResource("3_wwean"), ExtResource("4_eawel"), ExtResource("5_aqmg4")])
