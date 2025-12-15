@@ -2,19 +2,19 @@ extends HBoxContainer
 
 signal attack_selected(attack: Attack)
 
-@onready var buttons = get_children()
+@onready var buttons : Array[Node] = get_children()
 
-var char : Character
+var chara : Character
 
 func populate_moves(character : Character):
-	char = character
+	self.chara = character
 	for i in range(buttons.size()):
 		if i < character.moveset.size():
-			var move = character.moveset[i]
+			var move: Attack = chara.moveset[i]
 			buttons[i].text = move.name
 			buttons[i].visible = true
 			buttons[i].pressed.connect(_on_move_selected.bind(i))
 
 func _on_move_selected(index: int):
-	var attack = char.moveset[index]
+	var attack: Attack = chara.moveset[index]
 	attack_selected.emit(attack)

@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Attack" load_steps=2 format=3 uid="uid://bn4v3rdxt5r5m"]
-
-[ext_resource type="Script" uid="uid://da5gwh6uvs7j6" path="res://resources/baseAttack.gd" id="1_8sflr"]
-
-[resource]
-script = ExtResource("1_8sflr")
-name = "Basic Attack"
-power = 15
-mod = 1.0

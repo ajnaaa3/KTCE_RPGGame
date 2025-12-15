@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Character" load_steps=8 format=3 uid="uid://c435mj6n016d0"]
 
 [ext_resource type="Script" uid="uid://da5gwh6uvs7j6" path="res://resources/baseAttack.gd" id="1_0gq7x"]
-[ext_resource type="Resource" uid="uid://c5qyp7qkianqr" path="res://resources/Attacks/strong_attack.tres" id="2_0gq7x"]
-[ext_resource type="Resource" uid="uid://d4i15l2bkgu55" path="res://resources/Attacks/nutral_attack.tres" id="3_fwc6f"]
+[ext_resource type="Resource" uid="uid://d4i15l2bkgu55" path="res://resources/Attacks/setAlight.tres" id="3_fwc6f"]
 [ext_resource type="Resource" uid="uid://ld07w1l4ssgc" path="res://resources/Attacks/slash.tres" id="4_rgoum"]
-[ext_resource type="Resource" uid="uid://bn4v3rdxt5r5m" path="res://resources/Attacks/basic_attack.tres" id="5_yjvtj"]
+[ext_resource type="Resource" uid="uid://c5qyp7qkianqr" path="res://resources/Attacks/flail.tres" id="5_0gq7x"]
+[ext_resource type="Resource" uid="uid://bn4v3rdxt5r5m" path="res://resources/Attacks/tackle.tres" id="5_yjvtj"]
 [ext_resource type="Script" uid="uid://c2ll3kk7yaihn" path="res://resources/baseCharacter.gd" id="6_mo8tq"]
 [ext_resource type="Texture2D" uid="uid://dsvs00hbuq2yc" path="res://assets/images/Sprites/11.png" id="7_3q5k2"]
 
@@ -17,4 +17,4 @@ attack = 18
 defense = 20
 speed = 5
 type = 3
-moveset = Array[ExtResource("1_0gq7x")]([ExtResource("2_0gq7x"), ExtResource("3_fwc6f"), ExtResource("4_rgoum"), ExtResource("5_yjvtj")])
+moveset = Array[ExtResource("1_0gq7x")]([ExtResource("3_fwc6f"), ExtResource("4_rgoum"), ExtResource("5_yjvtj"), ExtResource("5_0gq7x")])

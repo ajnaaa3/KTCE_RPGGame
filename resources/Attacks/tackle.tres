@@ -1,8 +1,9 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://bn4v3rdxt5r5m"]
 
-[ext_resource type="Script" uid="uid://da5gwh6uvs7j6" path="res://resources/baseAttack.gd" id="1_u5jap"]
+[ext_resource type="Script" uid="uid://dx84f1epdbc55" path="res://resources/Attacks/damageAttack.gd" id="1_u5jap"]
 
 [resource]
 script = ExtResource("1_u5jap")
 name = "Tackle"
 power = 5
+type = 3

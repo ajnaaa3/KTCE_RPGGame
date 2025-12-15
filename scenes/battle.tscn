@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bvx4b1rqtup32"]
+[gd_scene load_steps=18 format=3 uid="uid://bvx4b1rqtup32"]
 
 [ext_resource type="Script" uid="uid://dwpc2b0m8du21" path="res://scenes/battle.gd" id="1_dn72j"]
 [ext_resource type="Resource" uid="uid://b7yjsbyv5smjm" path="res://resources/Characters/lilGuy.tres" id="2_4k1nj"]
 [ext_resource type="Texture2D" uid="uid://dpkfk7j82hlsn" path="res://assets/images/JWDLx5AZBtI.jpg" id="2_th188"]
+[ext_resource type="Resource" uid="uid://b61yhfg8k3364" path="res://resources/Characters/gumbotron.tres" id="3_yahae"]
 [ext_resource type="Texture2D" uid="uid://dsvs00hbuq2yc" path="res://assets/images/Sprites/11.png" id="4_a12nh"]
 [ext_resource type="Texture2D" uid="uid://lju4uiedgigj" path="res://assets/images/Sprites/02.png" id="5_lpir7"]
 [ext_resource type="Script" uid="uid://h605uw8ba6gf" path="res://scenes/attacks.gd" id="6_f4pi3"]
@@ -105,8 +106,8 @@ border_blend = true
 
 [node name="battle" type="Node2D"]
 script = ExtResource("1_dn72j")
-player = ExtResource("2_4k1nj")
-enemy = ExtResource("2_4k1nj")
+selectedPlayer = ExtResource("2_4k1nj")
+selectedEnemy = ExtResource("3_yahae")
 
 [node name="Background_fight" type="Sprite2D" parent="."]
 z_index = -100
