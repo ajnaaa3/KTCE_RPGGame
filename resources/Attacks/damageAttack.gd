@@ -1,12 +1,12 @@
 extends Attack
 
-func execute(attacker : Character, defender : Character, defender_anim : AnimationPlayer, defender_sound : AudioStreamPlayer, textbox : Panel, hpbar : ProgressBar):
+func execute(attacker : Character, defender : Character, attacker_anim : AnimationPlayer, defender_anim : AnimationPlayer, defender_sound : AudioStreamPlayer, textbox : Panel, hpbar : ProgressBar):
 	if randf() < self.accuracy:
 		var stab : float = TypeInteractions.get_stab(self.type, attacker.type)
 		var effective = TypeInteractions.get_effectiveness(self.type, defender.type)
 		var random: float = randf_range(0.8, 1.2)
-		var damage : int = round(max(0, ((self.power * float(attacker.attack) - float(defender.defense)) / 10) * effective * stab * random))
-		defender.set_current_hp(defender.current_hp - damage)
+		var damage : int = round(max(0, ((self.power * float(attacker.current_attack) - float(defender.current_defense)) / 10) * effective * stab * random))
+		defender.set_current_hp(max(0, defender.current_hp - damage))
 		set_health(hpbar, defender.current_hp)
 		defender_anim.play("damage")
 		if effective == 2.0:

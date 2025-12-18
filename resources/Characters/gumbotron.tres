@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dsvs00hbuq2yc" path="res://assets/images/Sprites/11.png" id="2_r6lb3"]
 [ext_resource type="Resource" uid="uid://d4i15l2bkgu55" path="res://resources/Attacks/setAlight.tres" id="3_bgh7o"]
 [ext_resource type="Resource" uid="uid://ld07w1l4ssgc" path="res://resources/Attacks/slash.tres" id="4_aji7k"]
-[ext_resource type="Resource" uid="uid://c5qyp7qkianqr" path="res://resources/Attacks/flail.tres" id="5_f1l3a"]
+[ext_resource type="Resource" uid="uid://dyohf0leo5dun" path="res://resources/Attacks/wind_up.tres" id="5_f1l3a"]
 [ext_resource type="Resource" uid="uid://bn4v3rdxt5r5m" path="res://resources/Attacks/tackle.tres" id="5_w304r"]
 
 [resource]

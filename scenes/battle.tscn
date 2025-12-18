@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bvx4b1rqtup32"]
+[gd_scene load_steps=20 format=3 uid="uid://bvx4b1rqtup32"]
 
 [ext_resource type="Script" uid="uid://dwpc2b0m8du21" path="res://scenes/battle.gd" id="1_dn72j"]
 [ext_resource type="Resource" uid="uid://b7yjsbyv5smjm" path="res://resources/Characters/lilGuy.tres" id="2_4k1nj"]
@@ -43,6 +43,21 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_66ngm"]
+resource_name = "buff"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.100000024, 0.20071645, 0.30071646, 0.40176323, 0.5017632, 0.59913236, 0.6991324, 0.8001792, 0.9001792, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.919838, 0.53207666, 0.17541918, 1), Color(1, 1, 1, 1), Color(0.919838, 0.53207666, 0.17541918, 1), Color(1, 1, 1, 1), Color(0.919838, 0.53207666, 0.17541918, 1), Color(1, 1, 1, 1), Color(0.919838, 0.53207666, 0.17541918, 1), Color(1, 1, 1, 1), Color(0.919838, 0.53207666, 0.17541918, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_f4pi3"]
 resource_name = "damage"
 tracks/0/type = "value"
@@ -56,6 +71,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_03edq"]
+resource_name = "debuff"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.100000024, 0.20071645, 0.30071646, 0.40176323, 0.5017632, 0.59913236, 0.6991324, 0.8001792, 0.9001792, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(5.390644e-06, 0.69686675, 0.9599667, 1), Color(1, 1, 1, 1), Color(0, 0.69803923, 0.9607843, 1), Color(1, 1, 1, 1), Color(0, 0.69803923, 0.9607843, 1), Color(1, 1, 1, 1), Color(0, 0.69803923, 0.9607843, 1), Color(1, 1, 1, 1), Color(0, 0.69803923, 0.9607843, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_v7i3o"]
@@ -88,7 +118,9 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v7i3o"]
 _data = {
 &"RESET": SubResource("Animation_yahae"),
+&"buff": SubResource("Animation_66ngm"),
 &"damage": SubResource("Animation_f4pi3"),
+&"debuff": SubResource("Animation_03edq"),
 &"defeat": SubResource("Animation_v7i3o")
 }
 

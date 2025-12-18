@@ -26,6 +26,12 @@ var defeat_music: String = "res://assets/sounds/defeat.ogg"
 func _ready() -> void:
 	player.set_current_hp(player.max_hp)
 	enemy.set_current_hp(enemy.max_hp)
+	player.set_current_attack(player.attack)
+	enemy.set_current_attack(enemy.attack)
+	player.set_current_defense(player.defense)
+	enemy.set_current_defense(enemy.defense)
+	player.set_current_speed(player.speed)
+	enemy.set_current_speed(enemy.speed)
 	set_health($PlayerContainer/PlayerHPBar, player.current_hp, player.max_hp)
 	set_health($EnemyContainer/EnemyHPBar, enemy.current_hp, enemy.max_hp)
 	$PlayerContainer/Sprite.texture = player.texture
@@ -77,53 +83,53 @@ func transition_to(new_state: BattleState) -> void:
 			transition_to(BattleState.RESOLVE_ATTACKS)
 			
 		BattleState.RESOLVE_ATTACKS:
-			if (player.speed > enemy.speed):
+			if (player.current_speed > enemy.current_speed):
 				display_text($Textbox, "%s uses %s" % [player.name, player_attack.name])
 				await get_tree().create_timer(1.0).timeout
-				await player_attack.execute(player, enemy, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar)
+				await player_attack.execute(player, enemy,player_anim, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar)
 				await get_tree().create_timer(1.3).timeout
 				if battle_end() :
 					return
 				current_hpbar = %PlayerHPBar
 				display_text($Textbox, "%s uses %s" % [enemy.name, enemy_attack.name])
 				await get_tree().create_timer(1.0).timeout
-				await enemy_attack.execute(enemy, player, player_anim, soundfx_player, $Textbox, %PlayerHPBar)
+				await enemy_attack.execute(enemy, player, enemy_anim, player_anim, soundfx_player, $Textbox, %PlayerHPBar)
 				await get_tree().create_timer(1.3).timeout
 				
-			elif (player.speed < enemy.speed):
+			elif (player.current_speed < enemy.current_speed):
 				display_text($Textbox, "%s uses %s" % [enemy.name, enemy_attack.name])
 				await get_tree().create_timer(1.0).timeout
-				await enemy_attack.execute(enemy, player, player_anim, soundfx_player, $Textbox, %PlayerHPBar)
+				await enemy_attack.execute(enemy, player, enemy_anim, player_anim, soundfx_player, $Textbox, %PlayerHPBar)
 				await get_tree().create_timer(1.3).timeout
 				if battle_end() :
 					return
 				display_text($Textbox, "%s uses %s" % [player.name, player_attack.name])
 				await get_tree().create_timer(1.0).timeout
-				await player_attack.execute(player, enemy, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar)
+				await player_attack.execute(player, enemy, player_anim, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar)
 				await get_tree().create_timer(1.3).timeout
 				
 			elif (rng.randi_range(0, 100) < 50):
 				display_text($Textbox, "%s uses %s" % [player.name, player_attack.name])
 				await get_tree().create_timer(1.0).timeout
-				await player_attack.execute(player, enemy, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar)
+				await player_attack.execute(player, enemy, player_anim, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar)
 				await get_tree().create_timer(1.3).timeout
 				if battle_end() :
 					return
 				display_text($Textbox, "%s uses %s" % [enemy.name, enemy_attack.name])
 				await get_tree().create_timer(1.0).timeout
-				await enemy_attack.execute(enemy, player, player_anim, soundfx_player, $Textbox, %PlayerHPBar)
+				await enemy_attack.execute(enemy, player, enemy_anim, player_anim, soundfx_player, $Textbox, %PlayerHPBar)
 				await get_tree().create_timer(1.3).timeout
 				
 			else:
 				display_text($Textbox, "%s uses %s" % [enemy.name, enemy_attack.name])
 				await get_tree().create_timer(1.0).timeout
-				await enemy_attack.execute(enemy, player, player_anim, soundfx_player, $Textbox, %PlayerHPBar)
+				await enemy_attack.execute(enemy, player, enemy_anim, player_anim, soundfx_player, $Textbox, %PlayerHPBar)
 				await get_tree().create_timer(1.3).timeout
 				if battle_end() :
 					return
 				display_text($Textbox, "%s uses %s" % [player.name, player_attack.name])
 				await get_tree().create_timer(1.0).timeout
-				await player_attack.execute(player, enemy, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar)
+				await player_attack.execute(player, enemy, player_anim, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar)
 				await get_tree().create_timer(1.3).timeout
 				
 			await get_tree().create_timer(1.0).timeout
@@ -134,6 +140,9 @@ func transition_to(new_state: BattleState) -> void:
 			
 		BattleState.PLAYER_WIN:
 			enemy_anim.play("defeat")
+			soundfx_player.stream = load("res://assets/sounds/Soundfx/downed.wav")
+			soundfx_player.play()
+			await get_tree().create_timer(0.7).timeout
 			music_player.stop()
 			music_player.stream = load(victory_music)
 			music_player.play()
@@ -144,6 +153,9 @@ func transition_to(new_state: BattleState) -> void:
 			
 		BattleState.PLAYER_LOSE:
 			player_anim.play("defeat")
+			soundfx_player.stream = load("res://assets/sounds/Soundfx/downed.wav")
+			soundfx_player.play()
+			await get_tree().create_timer(0.7).timeout
 			music_player.stop()
 			music_player.stream = load(defeat_music)
 			music_player.play()
