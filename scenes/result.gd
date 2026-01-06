@@ -1,16 +1,24 @@
 extends Control
 
+# UI-Referenzen mit Unique Names (%)
 @onready var title_lbl: Label = %Title
 @onready var btn_restart: Button = %Restart
 @onready var btn_change: Button = %ChangeCharacter
 @onready var btn_quit: Button = %Quit
-@onready var vbox: VBoxContainer = %VBoxContainer   # optional, falls du Abstand anpassen willst
+@onready var vbox: VBoxContainer = %VBoxContainer
+
+# Musik-Referenz (Direkter Pfad, da kein % im Screenshot zu sehen war)
+@onready var music_player: AudioStreamPlayer2D = $resultMusic
 
 # Pfade zu deinen Szenen
 const BATTLE_SCENE_PATH := "res://scenes/battle.tscn"
 const CHARACTER_SCREEN_PATH := "res://scenes/characterScreen.tscn"
 
 func _ready() -> void:
+	# 1. Musik sofort starten
+	if music_player:
+		music_player.play()
+	
 	# Optional: Button-Abstand einstellen
 	if vbox:
 		vbox.add_theme_constant_override("separation", 20)
@@ -19,7 +27,7 @@ func _ready() -> void:
 	var outcome := "lost"
 	if get_tree().has_meta("battle_result"):
 		outcome = str(get_tree().get_meta("battle_result"))
-		get_tree().set_meta("battle_result", null)  # Reset, damit’s nicht bleibt
+		get_tree().set_meta("battle_result", null)  # Reset
 
 	var won := (outcome == "win")
 	title_lbl.text = "YOU WON!" if won else "YOU LOST!"

@@ -308,3 +308,8 @@ autoplay = true
 [node name="SoundFXPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_yahae")
 volume_db = -2.0
+
+[node name="BattleMessage" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0
