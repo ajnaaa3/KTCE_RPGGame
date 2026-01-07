@@ -1,0 +1,15 @@
+# Godot
+.import/
+export.cfg
+export_presets.cfg
+
+# Godot 4 Cache
+.godot/
+
+# Betriebssystem-Dateien
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/

@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctg0ufjxefgif"]
+
+[ext_resource type="Script" uid="uid://gs5vcta2badu" path="res://scenes/element_quadrant.gd" id="1_j0qqp"]
+[ext_resource type="PackedScene" uid="uid://bo7a5tdy7m80b" path="res://scenes/CharacterSlot.tscn" id="1_orm41"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j0qqp"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="ElementQuadrant" type="Panel"]
+custom_minimum_size = Vector2(260, 300)
+theme_override_styles/panel = SubResource("StyleBoxFlat_j0qqp")
+script = ExtResource("1_j0qqp")
+element = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(260, 300)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="SlotsContainer" type="GridContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(260, 300)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="CharacterSlot" parent="VBoxContainer/SlotsContainer" instance=ExtResource("1_orm41")]
+layout_mode = 2

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d4i15l2bkgu55"]
+
+[ext_resource type="Script" uid="uid://dx84f1epdbc55" path="res://resources/Attacks/damageAttack.gd" id="1_lqfab"]
+
+[resource]
+script = ExtResource("1_lqfab")
+name = "Set Alight"
+power = 15
+accuracy = 0.8
+type = 0

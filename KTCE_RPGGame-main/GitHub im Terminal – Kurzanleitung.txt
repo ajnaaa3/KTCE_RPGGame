@@ -1,0 +1,70 @@
+💻 GitHub im Terminal – Kurzanleitung für dein Godot-Projekt
+🟩 1. Änderungen speichern (lokal)
+
+Wenn du im Projekt etwas geändert hast (z. B. neue Szene, Script oder UI-Anpassung):
+
+git add .
+git commit -m "Kurze Beschreibung deiner Änderung"
+
+
+💡 Beispiel:
+
+git commit -m "Added new battle UI and attack logic"
+
+🔄 2. Aktuelle Version von GitHub holen (immer vor der Arbeit!)
+
+Bevor du etwas Neues machst oder pushst:
+
+git pull origin main
+
+
+➡️ Holt die neuesten Änderungen deiner Teammitglieder.
+(So vermeidest du Konflikte.)
+
+☁️ 3. Änderungen hochladen (nach der Arbeit)
+
+Wenn du fertig bist und deine Änderungen auf GitHub laden willst:
+
+git push
+
+
+➡️ Deine Änderungen werden ins Repository hochgeladen,
+damit dein Team sie sehen und verwenden kann.
+
+🌿 4. (Optional) In einem eigenen Branch arbeiten
+
+Wenn ihr parallel arbeitet (z. B. UI, Logic, Design getrennt):
+
+git checkout -b ui
+
+
+→ Du arbeitest im neuen Branch „ui“.
+
+Wenn du fertig bist:
+
+git push -u origin ui
+
+
+➡️ Danach kann jemand auf GitHub einen Pull Request erstellen, um das in main zu mergen.
+
+🔍 5. Status prüfen (zur Kontrolle)
+
+Wenn du wissen willst, was sich geändert hat:
+
+git status
+
+
+oder
+
+git log --oneline
+
+🚫 6. Wenn Git sich beschwert (z. B. push rejected)
+
+Dann einfach:
+
+git pull origin main --rebase
+git push
+
+
+➡️ Damit ziehst du erst die neuesten Änderungen von GitHub
+und pushst danach wieder deinen aktuellen Stand.

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cujvqechnsxt3"
+path="res://.godot/imported/dova_Mauve Rhopalocera_master.mp3-01f64d6497144990e8ec8b590ef68ef5.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/dova_Mauve Rhopalocera_master.mp3"
+dest_files=["res://.godot/imported/dova_Mauve Rhopalocera_master.mp3-01f64d6497144990e8ec8b590ef68ef5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
