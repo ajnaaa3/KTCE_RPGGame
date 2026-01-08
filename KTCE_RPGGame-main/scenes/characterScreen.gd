@@ -106,14 +106,17 @@ func _select_character(index: int) -> void:
 
 func _on_start_game_pressed() -> void:
 	if selected_char_index != -1:
-		print("Starting battle with Player " + str(selected_char_index + 1))
-		music_player.stop() 
-		var battle_scene_path = "res://scenes/battle.tscn"
-		
-		if ResourceLoader.exists(battle_scene_path):
-			get_tree().change_scene_to_file(battle_scene_path)
+		print("Player selected: Player " + str(selected_char_index + 1))
+		music_player.stop()
+
+		GameSettings.selected_player = selected_char_index + 1
+
+		var select_character_scene = "res://scenes/SelectCharacterScreen.tscn"
+		if ResourceLoader.exists(select_character_scene):
+			get_tree().change_scene_to_file(select_character_scene)
 		else:
-			print("FEHLER: battle.tscn wurde unter dem angegebenen Pfad nicht gefunden.")
+			print("FEHLER: SelectCharacterScreen.tscn nije pronađen.")
+
 	
 
 # WICHTIG: Dies ist die Funktion, die der BackButton auslösen soll.

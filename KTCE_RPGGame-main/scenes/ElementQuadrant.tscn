@@ -14,7 +14,9 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [node name="ElementQuadrant" type="Panel"]
-custom_minimum_size = Vector2(260, 300)
+custom_minimum_size = Vector2(350, 400)
+offset_right = 1143.0
+offset_bottom = 400.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_j0qqp")
 script = ExtResource("1_j0qqp")
 element = 2

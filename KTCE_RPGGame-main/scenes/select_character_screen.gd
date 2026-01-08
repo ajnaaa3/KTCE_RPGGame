@@ -1,15 +1,24 @@
 extends Control
 
-@onready var confirm_button: Button = $CenterContainer/VBoxContainer/Button
+@onready var confirm_button: Button = %StartGameButton
+@onready var menu_button: Button = %BackButton
 
 var selected_slot: CharacterSlot = null
 var slot_group := ButtonGroup.new()
 
 
 func _ready() -> void:
+	
+
 	confirm_button.disabled = true
+	confirm_button.pressed.connect(_on_confirm_pressed)
 	confirm_button.text = "Select a character"
 	confirm_button.modulate = Color(1, 1, 1, 0.5)
+	
+	menu_button.pressed.connect(_on_menu_pressed)
+
+	
+
 
 	for q in get_tree().get_nodes_in_group("quadrants"):
 		q.slot_selected.connect(_on_slot_selected)
@@ -38,11 +47,14 @@ func _on_slot_selected(slot: CharacterSlot) -> void:
 	slot.add_theme_stylebox_override("pressed", style)
 
 	confirm_button.disabled = false
-	confirm_button.text = "Confirm Selection"
+	confirm_button.text = "Start Game"
 	confirm_button.modulate = Color(1, 1, 1, 1)
 
 
-
 func _on_confirm_pressed() -> void:
-	if selected_slot:
-		print(selected_slot.character.name)
+	GameSettings.selected_character = selected_slot.character
+	print("SELECTED CHARACTER:", GameSettings.selected_character.name)
+	get_tree().change_scene_to_file("res://scenes/battle.tscn")
+	
+func _on_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/characterScreen.tscn")

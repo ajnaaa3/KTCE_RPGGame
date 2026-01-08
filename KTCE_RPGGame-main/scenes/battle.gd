@@ -3,6 +3,10 @@ class_name Battle
 
 signal textbox_closed
 
+var player: Character
+var enemy: Character
+
+
 @export var selectedPlayer : Character
 @export var selectedEnemy : Character
 
@@ -37,15 +41,23 @@ var enemy_slash_streak: int = 0
 @onready var music_player : AudioStreamPlayer = $BGMPlayer
 @onready var soundfx_player : AudioStreamPlayer = $SoundFXPlayer
 
-@onready var player : Character = selectedPlayer.duplicate_deep(Resource.DEEP_DUPLICATE_NONE)
-@onready var enemy : Character = selectedEnemy.duplicate_deep(Resource.DEEP_DUPLICATE_NONE)
+#@onready var player : Character = selectedPlayer.duplicate_deep(Resource.DEEP_DUPLICATE_NONE)
+#@onready var enemy : Character = selectedEnemy.duplicate_deep(Resource.DEEP_DUPLICATE_NONE)
 
 @onready var player_sprite: CanvasItem = $PlayerContainer/Sprite
 @onready var enemy_sprite: CanvasItem = $EnemyContainer/Sprite
 
 
 func _ready() -> void:
-	randomize()
+	
+	if GameSettings.selected_character != null:
+		selectedPlayer = GameSettings.selected_character
+		print("BATTLE USING:", selectedPlayer.name)
+	#randomize()
+	
+		player = selectedPlayer.duplicate_deep(Resource.DEEP_DUPLICATE_NONE)
+	enemy = selectedEnemy.duplicate_deep(Resource.DEEP_DUPLICATE_NONE)
+
 
 	player.set_current_hp(player.max_hp)
 	enemy.set_current_hp(enemy.max_hp)
