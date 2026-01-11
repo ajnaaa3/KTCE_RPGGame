@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dyohf0leo5dun"]
+
+[ext_resource type="Script" uid="uid://b5gs48hi8nogp" path="res://resources/Attacks/statusMove_self.gd" id="1_2ma52"]
+
+[resource]
+script = ExtResource("1_2ma52")
+name = "Wind Up"
+stat = 2
+mod = 1.25
