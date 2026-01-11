@@ -1,25 +1,20 @@
 extends Control
 
-# UI-Referenzen mit Unique Names (%)
 @onready var title_lbl: Label = %Title
 @onready var btn_restart: Button = %Restart
 @onready var btn_change: Button = %ChangeCharacter
 @onready var btn_quit: Button = %Quit
 @onready var vbox: VBoxContainer = %VBoxContainer
 
-# Musik-Referenz (Direkter Pfad, da kein % im Screenshot zu sehen war)
 @onready var music_player: AudioStreamPlayer2D = $resultMusic
 
-# Pfade zu deinen Szenen
 const BATTLE_SCENE_PATH := "res://scenes/battle.tscn"
 const CHARACTER_SCREEN_PATH := "res://scenes/characterScreen.tscn"
 
 func _ready() -> void:
-	# 1. Musik sofort starten
 	if music_player:
 		music_player.play()
 	
-	# Optional: Button-Abstand einstellen
 	if vbox:
 		vbox.add_theme_constant_override("separation", 20)
 
@@ -33,15 +28,13 @@ func _ready() -> void:
 	title_lbl.text = "YOU WON!" if won else "YOU LOST!"
 	title_lbl.modulate = Color(0.3, 1.0, 0.3) if won else Color(1.0, 0.3, 0.3)
 
-	# Button-Signale verbinden
 	btn_restart.pressed.connect(_on_restart)
 	btn_change.pressed.connect(_on_change_character)
 	btn_quit.pressed.connect(_on_quit)
 
-	btn_restart.grab_focus()  # Fokus fürs Gamepad/Keyboard
+	btn_restart.grab_focus() 
 
 func _unhandled_input(event: InputEvent) -> void:
-	# Komfort: Enter = Restart, Esc = Quit
 	if event.is_action_pressed("ui_accept"):
 		_on_restart()
 	elif event.is_action_pressed("ui_cancel"):

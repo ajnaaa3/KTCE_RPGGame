@@ -19,9 +19,9 @@ class_name Character
 #   STATUS & COMBAT STATE
 # =========================
 
-var statuses: Array = []              # Burned, Bleeding, etc.
-var next_attack_miss_chance: float = 0.0  # für Confused
-var slash_hit_streak: int = 0         # für Bleeding
+var statuses: Array = []             
+var next_attack_miss_chance: float = 0.0 
+var slash_hit_streak: int = 0         
 
 func _init():
 	current_hp = max_hp

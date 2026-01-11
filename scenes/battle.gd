@@ -16,7 +16,6 @@ var current_state: BattleState = BattleState.PLAYER_TURN
 var victory_music: String = "res://assets/sounds/victory.ogg"
 var defeat_music: String = "res://assets/sounds/defeat.ogg"
 
-# --- Status State (im Battle gehalten, damit Character nicht angepasst werden muss) ---
 var player_confused_next: bool = false
 var enemy_confused_next: bool = false
 
@@ -29,7 +28,6 @@ var enemy_bleeding: bool = false
 var player_slash_streak: int = 0
 var enemy_slash_streak: int = 0
 
-# --- Nodes ---
 @onready var current_hpbar : ProgressBar = %PlayerHPBar
 @onready var attack_panel: HBoxContainer = $PlayerPanel/Attacks
 @onready var player_anim: AnimationPlayer = $PlayerContainer/CharacterAnimationPlayer
@@ -46,6 +44,16 @@ var enemy_slash_streak: int = 0
 
 func _ready() -> void:
 	randomize()
+	
+	if GameSettings.music_enabled:
+		music_player.play()
+	else:
+		music_player.stop()
+
+	if not GameSettings.sfx_enabled:
+		soundfx_player.volume_db = -80 
+	else:
+		soundfx_player.volume_db = 0 
 
 	player.set_current_hp(player.max_hp)
 	enemy.set_current_hp(enemy.max_hp)
@@ -99,15 +107,9 @@ func _on_player_attack_selected(attack: Attack) -> void:
 	$PlayerPanel.hide()
 	transition_to(BattleState.ENEMY_TURN)
 
-
-# =======================
-#   TURN / STATUS HELPERS
-# =======================
-
 func _apply_end_of_round_status_damage() -> void:
 	var did_any := false
 
-	# Burned: 20% Chance auf -10 HP (Meldung nur wenn es wirklich passiert)
 	if player_burned and player.current_hp > 0 and randf() < 0.2:
 		player.set_current_hp(player.current_hp - 10)
 		set_health($PlayerContainer/PlayerHPBar, player.current_hp, player.max_hp)
@@ -120,7 +122,6 @@ func _apply_end_of_round_status_damage() -> void:
 		await show_status_applied(enemy, "Burned (-10 HP)", true)
 		did_any = true
 
-	# Bleeding: jede Runde -7 HP (immer Meldung solange HP > 0)
 	if player_bleeding and player.current_hp > 0:
 		player.set_current_hp(player.current_hp - 7)
 		set_health($PlayerContainer/PlayerHPBar, player.current_hp, player.max_hp)
@@ -133,13 +134,11 @@ func _apply_end_of_round_status_damage() -> void:
 		await show_status_applied(enemy, "Bleeding (-7 HP)", true)
 		did_any = true
 
-	# Optional: kleine Pause nur wenn wirklich Meldungen gezeigt wurden
 	if did_any:
 		await get_tree().create_timer(0.2).timeout
 
 
 func _should_miss_due_to_confused(is_attacker_enemy: bool) -> bool:
-	# Confused: 40% Chance, nächste Attacke MISS (danach weg)
 	if is_attacker_enemy:
 		if enemy_confused_next:
 			enemy_confused_next = false
@@ -152,13 +151,9 @@ func _should_miss_due_to_confused(is_attacker_enemy: bool) -> bool:
 
 
 func _after_attack_apply_statuses(attack_used: Attack, attacker_is_enemy: bool) -> void:
-	# attacker_is_enemy = true  -> attacker=enemy, target=player
-	# attacker_is_enemy = false -> attacker=player, target=enemy
-
 	var target: Character = player if attacker_is_enemy else enemy
-	var target_is_enemy: bool = (not attacker_is_enemy)  # wenn attacker=player, target=enemy -> true
+	var target_is_enemy: bool = (not attacker_is_enemy)
 
-	# ---- Set Alight -> Burned ----
 	if attack_used != null and attack_used.name == "Set Alight":
 		if target_is_enemy:
 			enemy_burned = true
@@ -166,7 +161,6 @@ func _after_attack_apply_statuses(attack_used: Attack, attacker_is_enemy: bool) 
 			player_burned = true
 		await show_status_applied(target, "Burned", target_is_enemy)
 
-	# ---- Tackle -> Confused (40% Chance) ----
 	if attack_used != null and attack_used.name == "Tackle":
 		if randf() < 0.4:
 			if target_is_enemy:
@@ -175,7 +169,6 @@ func _after_attack_apply_statuses(attack_used: Attack, attacker_is_enemy: bool) 
 				player_confused_next = true
 			await show_status_applied(target, "Confused", target_is_enemy)
 
-	# ---- Slash -> Bleeding nach 2 Slash in Folge ----
 	if attack_used != null and attack_used.name == "Slash":
 		if attacker_is_enemy:
 			enemy_slash_streak += 1
@@ -188,16 +181,10 @@ func _after_attack_apply_statuses(attack_used: Attack, attacker_is_enemy: bool) 
 				enemy_bleeding = true
 				await show_status_applied(enemy, "Bleeding", true)
 	else:
-		# wenn nicht Slash, Streak zurücksetzen
 		if attacker_is_enemy:
 			enemy_slash_streak = 0
 		else:
 			player_slash_streak = 0
-
-
-# =======================
-#   BATTLE STATE MACHINE
-# =======================
 
 func transition_to(new_state: BattleState) -> void:
 	current_state = new_state
@@ -212,22 +199,18 @@ func transition_to(new_state: BattleState) -> void:
 			transition_to(BattleState.RESOLVE_ATTACKS)
 
 		BattleState.RESOLVE_ATTACKS:
-			# Hilfsfunktion um einen Angriff inkl. Confused/Miss abzuhandeln
 			var do_attack = func(attacker: Character, target: Character, attacker_anim: AnimationPlayer, target_anim: AnimationPlayer, hpbar: ProgressBar, attack_used: Attack, attacker_is_enemy: bool) -> bool:
-				# Confused Miss?
 				if _should_miss_due_to_confused(attacker_is_enemy):
 					display_text($Textbox, "%s is confused... MISS!" % attacker.name)
 					await get_tree().create_timer(0.9).timeout
 					$Textbox.hide()
 					return false
 
-				# normaler Angriff
 				display_text($Textbox, "%s uses %s" % [attacker.name, attack_used.name])
 				await get_tree().create_timer(1.0).timeout
 				await attack_used.execute(attacker, target, attacker_anim, target_anim, soundfx_player, $Textbox, hpbar)
 				await get_tree().create_timer(1.0).timeout
 
-				# Statusauslöser direkt nach execute()
 				await _after_attack_apply_statuses(attack_used, attacker_is_enemy)
 				return true
 
@@ -264,7 +247,6 @@ func transition_to(new_state: BattleState) -> void:
 				await do_attack.call(player, enemy, player_anim, enemy_anim, %EnemyHPBar, player_attack, false)
 				await get_tree().create_timer(0.3).timeout
 
-			# Nach beiden Aktionen: Status-Schaden am Rundenende (mit Meldungen)
 			await _apply_end_of_round_status_damage()
 			if battle_end(): return
 
@@ -277,8 +259,11 @@ func transition_to(new_state: BattleState) -> void:
 			soundfx_player.play()
 			await get_tree().create_timer(0.7).timeout
 			music_player.stop()
-			music_player.stream = load(victory_music)
-			music_player.play()
+			
+			if GameSettings.music_enabled:
+				music_player.stream = load(victory_music)
+				music_player.play()
+				
 			display_text($Textbox, "You won!")
 			await(textbox_closed)
 			get_tree().set_meta("battle_result", "win")
@@ -290,8 +275,11 @@ func transition_to(new_state: BattleState) -> void:
 			soundfx_player.play()
 			await get_tree().create_timer(0.7).timeout
 			music_player.stop()
-			music_player.stream = load(defeat_music)
-			music_player.play()
+			
+			if GameSettings.music_enabled:
+				music_player.stream = load(defeat_music)
+				music_player.play()
+				
 			display_text($Textbox, "You lost...")
 			await(textbox_closed)
 			get_tree().set_meta("battle_result", "lost")
@@ -311,11 +299,6 @@ func battle_end() -> bool:
 
 func deferred_goto_results():
 	get_tree().change_scene_to_file("res://scenes/result.tscn")
-
-
-# =======================
-#   Status Meldung + Blink
-# =======================
 
 func show_status_applied(target: Character, status_text: String, is_enemy: bool) -> void:
 	display_text($Textbox, "%s is %s!" % [target.name, status_text])
