@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://bcsla33o0efih"]
+
+[ext_resource type="Script" uid="uid://da5gwh6uvs7j6" path="res://resources/baseAttack.gd" id="1_2003y"]
+[ext_resource type="Resource" uid="uid://d4i15l2bkgu55" path="res://resources/Attacks/setAlight.tres" id="2_s4rvr"]
+[ext_resource type="Script" uid="uid://c2ll3kk7yaihn" path="res://resources/baseCharacter.gd" id="3_pu6o4"]
+[ext_resource type="Texture2D" uid="uid://bplcv3d6t13d1" path="res://resources/Characters/19 v2.png" id="4_0vcc2"]
+
+[resource]
+script = ExtResource("3_pu6o4")
+name = "Hot Stick"
+texture = ExtResource("4_0vcc2")
+moveset = Array[ExtResource("1_2003y")]([ExtResource("2_s4rvr"), ExtResource("2_s4rvr"), ExtResource("2_s4rvr"), ExtResource("2_s4rvr")])

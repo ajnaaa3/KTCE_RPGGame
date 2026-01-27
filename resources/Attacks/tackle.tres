@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_u5jap")
 name = "Tackle"
-power = 5
+power = 100000
 type = 2
