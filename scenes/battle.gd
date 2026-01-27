@@ -106,7 +106,6 @@ func transition_to(new_state: BattleState) -> void:
 			transition_to(BattleState.RESOLVE_ATTACKS)
 			
 		BattleState.RESOLVE_ATTACKS:
-			var check = selectedPlayer == newPlayerCharacter
 			if selectedPlayer != newPlayerCharacter:
 				player_anim.play("defeat")
 				soundfx_player.stream = load("res://assets/sounds/Soundfx/switch.ogg")
