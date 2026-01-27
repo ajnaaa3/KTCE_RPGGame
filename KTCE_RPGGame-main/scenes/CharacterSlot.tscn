@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo7a5tdy7m80b"]
+
+[ext_resource type="Script" uid="uid://bxve30t77qn1t" path="res://scenes/character_slot.gd" id="1_c0oo1"]
+
+[node name="CharacterSlot" type="Button"]
+custom_minimum_size = Vector2(100, 140)
+offset_right = 8.0
+offset_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+script = ExtResource("1_c0oo1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 2
+clip_text = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5

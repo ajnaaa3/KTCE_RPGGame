@@ -4,14 +4,17 @@ extends Control
 @onready var btn_restart: Button = %Restart
 @onready var btn_change: Button = %ChangeCharacter
 @onready var btn_quit: Button = %Quit
-@onready var vbox: VBoxContainer = %VBoxContainer   # optional, falls du Abstand anpassen willst
+@onready var vbox: VBoxContainer = %VBoxContainer
 
-# Pfade zu deinen Szenen
+@onready var music_player: AudioStreamPlayer2D = $resultMusic
+
 const BATTLE_SCENE_PATH := "res://scenes/battle.tscn"
 const CHARACTER_SCREEN_PATH := "res://scenes/characterScreen.tscn"
 
 func _ready() -> void:
-	# Optional: Button-Abstand einstellen
+	if music_player:
+		music_player.play()
+	
 	if vbox:
 		vbox.add_theme_constant_override("separation", 20)
 
@@ -19,21 +22,19 @@ func _ready() -> void:
 	var outcome := "lost"
 	if get_tree().has_meta("battle_result"):
 		outcome = str(get_tree().get_meta("battle_result"))
-		get_tree().set_meta("battle_result", null)  # Reset, damit’s nicht bleibt
+		get_tree().set_meta("battle_result", null)  # Reset
 
 	var won := (outcome == "win")
 	title_lbl.text = "YOU WON!" if won else "YOU LOST!"
 	title_lbl.modulate = Color(0.3, 1.0, 0.3) if won else Color(1.0, 0.3, 0.3)
 
-	# Button-Signale verbinden
 	btn_restart.pressed.connect(_on_restart)
 	btn_change.pressed.connect(_on_change_character)
 	btn_quit.pressed.connect(_on_quit)
 
-	btn_restart.grab_focus()  # Fokus fürs Gamepad/Keyboard
+	btn_restart.grab_focus() 
 
 func _unhandled_input(event: InputEvent) -> void:
-	# Komfort: Enter = Restart, Esc = Quit
 	if event.is_action_pressed("ui_accept"):
 		_on_restart()
 	elif event.is_action_pressed("ui_cancel"):
