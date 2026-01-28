@@ -1,10 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ld07w1l4ssgc"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ld07w1l4ssgc"]
 
-[ext_resource type="Script" uid="uid://dx84f1epdbc55" path="res://resources/Attacks/damageAttack.gd" id="1_jttlq"]
+[ext_resource type="Script" uid="uid://8tsbpgliaho4" path="res://resources/Attacks/slash.gd" id="1_jttlq"]
+[ext_resource type="Resource" uid="uid://bpvdsd8f2cy5w" path="res://resources/Statuses/Bleed.tres" id="2_6qpr4"]
 
 [resource]
 script = ExtResource("1_jttlq")
+status = ExtResource("2_6qpr4")
 name = "Slash"
-power = 13
-accuracy = 0.9
-type = 1
+power = 15
+type = 3

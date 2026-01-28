@@ -1,10 +1,12 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d4i15l2bkgu55"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://d4i15l2bkgu55"]
 
-[ext_resource type="Script" uid="uid://dx84f1epdbc55" path="res://resources/Attacks/damageAttack.gd" id="1_lqfab"]
+[ext_resource type="Script" uid="uid://cnj7p1l4bub0a" path="res://resources/Attacks/setAlight.gd" id="1_unbtj"]
+[ext_resource type="Resource" uid="uid://dqpypm1akow8" path="res://resources/Statuses/Burn.tres" id="2_cjfp4"]
 
 [resource]
-script = ExtResource("1_lqfab")
+script = ExtResource("1_unbtj")
+status = ExtResource("2_cjfp4")
 name = "Set Alight"
-power = 15
+power = 25
 accuracy = 0.8
 type = 0

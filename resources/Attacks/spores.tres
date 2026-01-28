@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://20shkkwwqwxu"]
+
+[ext_resource type="Script" uid="uid://dpj2xh1vce4m3" path="res://resources/Attacks/whirlwind.gd" id="1_rdk37"]
+[ext_resource type="Resource" uid="uid://7ipnoepxqomw" path="res://resources/Statuses/Confused.tres" id="2_t20oh"]
+
+[resource]
+script = ExtResource("1_rdk37")
+status = ExtResource("2_t20oh")
+name = "Silly Spores"
+type = 1

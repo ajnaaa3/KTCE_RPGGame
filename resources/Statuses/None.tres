@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Status" load_steps=2 format=3 uid="uid://ctv8lw0xd5hdy"]
+
+[ext_resource type="Script" uid="uid://cc7tcm8ldy8tj" path="res://resources/baseStatus.gd" id="1_s5y10"]
+
+[resource]
+script = ExtResource("1_s5y10")
+name = "None"

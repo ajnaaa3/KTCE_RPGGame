@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dm56yqtki4b1b"]
+
+[ext_resource type="Script" uid="uid://dx84f1epdbc55" path="res://resources/Attacks/damageAttack.gd" id="1_2bd02"]
+
+[resource]
+script = ExtResource("1_2bd02")
+name = "Rock Throw"
+power = 25
+accuracy = 0.95
+type = 1

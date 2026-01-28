@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Character" load_steps=9 format=3 uid="uid://dsledb05s7wik"]
+
+[ext_resource type="Script" uid="uid://da5gwh6uvs7j6" path="res://resources/baseAttack.gd" id="1_bgilq"]
+[ext_resource type="Resource" uid="uid://qw0pa3brbdwv" path="res://resources/Attacks/Steamshot.tres" id="2_lc2np"]
+[ext_resource type="Resource" uid="uid://bc4b684mmhq4w" path="res://resources/Attacks/tsunami.tres" id="3_wlp4m"]
+[ext_resource type="Resource" uid="uid://c1av1f8yewj0" path="res://resources/Attacks/wash.tres" id="4_oknei"]
+[ext_resource type="Resource" uid="uid://dyohf0leo5dun" path="res://resources/Attacks/wind_up.tres" id="5_4b1b8"]
+[ext_resource type="Script" uid="uid://c2ll3kk7yaihn" path="res://resources/baseCharacter.gd" id="6_2wuhx"]
+[ext_resource type="Resource" uid="uid://ctv8lw0xd5hdy" path="res://resources/Statuses/None.tres" id="7_lreo8"]
+[ext_resource type="Texture2D" uid="uid://c6ffy3gpo7nbb" path="res://assets/images/Sprites/21b.png" id="8_25g50"]
+
+[resource]
+script = ExtResource("6_2wuhx")
+name = "Eviath"
+texture = ExtResource("8_25g50")
+max_hp = 115
+attack = 8
+defense = 28
+speed = 12
+moveset = Array[ExtResource("1_bgilq")]([ExtResource("2_lc2np"), ExtResource("3_wlp4m"), ExtResource("4_oknei"), ExtResource("5_4b1b8")])
+status = ExtResource("7_lreo8")

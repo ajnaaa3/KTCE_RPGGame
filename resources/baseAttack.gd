@@ -9,5 +9,5 @@ enum Stat {ATTACK, DEFENSE, SPEED}
 @export var mod : float = 0.5
 @export var type : Type.Type = Type.Type.NONE
 
-func execute(attacker, defender, attacker_anim : AnimationPlayer, defender_anim : AnimationPlayer, defender_sound : AudioStreamPlayer, textbox : Panel, hpbar : ProgressBar):
+func execute(attacker, defender, attacker_anim : AnimationPlayer, defender_anim : AnimationPlayer, defender_sound : AudioStreamPlayer, textbox : Panel, hpbar : ProgressBar,tree: SceneTree, statusBox: Panel):
 	pass

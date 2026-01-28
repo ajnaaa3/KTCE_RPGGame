@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://qw0pa3brbdwv"]
+
+[ext_resource type="Script" uid="uid://cnj7p1l4bub0a" path="res://resources/Attacks/setAlight.gd" id="1_lbnb2"]
+[ext_resource type="Resource" uid="uid://dqpypm1akow8" path="res://resources/Statuses/Burn.tres" id="2_f0yvh"]
+
+[resource]
+script = ExtResource("1_lbnb2")
+status = ExtResource("2_f0yvh")
+name = "Steamshot"
+power = 25
+accuracy = 0.95
+type = 2

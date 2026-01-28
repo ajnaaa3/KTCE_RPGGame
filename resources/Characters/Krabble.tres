@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Character" load_steps=9 format=3 uid="uid://cdwqqw1o8427g"]
+
+[ext_resource type="Script" uid="uid://da5gwh6uvs7j6" path="res://resources/baseAttack.gd" id="1_5nl5v"]
+[ext_resource type="Resource" uid="uid://crkqvjpurw0ed" path="res://resources/Attacks/raise_shield.tres" id="2_di2rt"]
+[ext_resource type="Resource" uid="uid://c5n721q58kp1h" path="res://resources/Attacks/Spurt.tres" id="3_vxv4l"]
+[ext_resource type="Resource" uid="uid://ld07w1l4ssgc" path="res://resources/Attacks/slash.tres" id="4_undre"]
+[ext_resource type="Resource" uid="uid://c1av1f8yewj0" path="res://resources/Attacks/wash.tres" id="5_lrj52"]
+[ext_resource type="Script" uid="uid://c2ll3kk7yaihn" path="res://resources/baseCharacter.gd" id="6_b4345"]
+[ext_resource type="Resource" uid="uid://ctv8lw0xd5hdy" path="res://resources/Statuses/None.tres" id="7_vybdm"]
+[ext_resource type="Texture2D" uid="uid://ce2dxvdqml60e" path="res://assets/images/Sprites/22b.png" id="8_w0nu5"]
+
+[resource]
+script = ExtResource("6_b4345")
+name = "Krabble"
+texture = ExtResource("8_w0nu5")
+max_hp = 65
+attack = 3
+defense = 35
+speed = 2
+type = 2
+moveset = Array[ExtResource("1_5nl5v")]([ExtResource("2_di2rt"), ExtResource("3_vxv4l"), ExtResource("4_undre"), ExtResource("5_lrj52")])
+status = ExtResource("7_vybdm")

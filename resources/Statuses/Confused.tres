@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Status" load_steps=2 format=3 uid="uid://7ipnoepxqomw"]
+
+[ext_resource type="Script" uid="uid://cc7tcm8ldy8tj" path="res://resources/baseStatus.gd" id="1_0dh2n"]
+
+[resource]
+script = ExtResource("1_0dh2n")
+name = "Confused"

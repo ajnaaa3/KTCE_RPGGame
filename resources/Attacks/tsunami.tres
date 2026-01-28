@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bc4b684mmhq4w"]
+
+[ext_resource type="Script" uid="uid://dx84f1epdbc55" path="res://resources/Attacks/damageAttack.gd" id="1_ry7wm"]
+
+[resource]
+script = ExtResource("1_ry7wm")
+name = "Tsunami"
+power = 35
+accuracy = 0.65
+type = 2

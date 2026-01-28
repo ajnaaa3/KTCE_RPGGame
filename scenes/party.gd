@@ -9,14 +9,19 @@ func populate_members(party : Array[Character], currentCharacter : Character) :
 	
 	for i in range(buttons.size()):
 		if currentCharacter == party[i]:
-			buttons[i].text = "%s In Battle" % currentCharacter.name
+			buttons[i].text = "%s (In Battle)" % currentCharacter.name
 			buttons[i].visible = true
+			buttons[i].disabled = true
 			buttons[i].pressed.connect(on_current_party_member_selected)
 		elif i < party.size():
 			var character : Character = party[i]
 			buttons[i].text = character.name
 			buttons[i].visible = true
+			buttons[i].disabled = false
 			buttons[i].pressed.connect(_on_member_selected.bind(i))
+			if character.current_hp <= 0:
+				buttons[i].disabled = true
+				buttons[i].text += " (Down)"
 			
 func on_current_party_member_selected():
 	pass

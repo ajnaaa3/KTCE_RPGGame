@@ -1,12 +1,25 @@
-[gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://bcsla33o0efih"]
+[gd_resource type="Resource" script_class="Character" load_steps=9 format=3 uid="uid://bcsla33o0efih"]
 
 [ext_resource type="Script" uid="uid://da5gwh6uvs7j6" path="res://resources/baseAttack.gd" id="1_2003y"]
 [ext_resource type="Resource" uid="uid://d4i15l2bkgu55" path="res://resources/Attacks/setAlight.tres" id="2_s4rvr"]
 [ext_resource type="Script" uid="uid://c2ll3kk7yaihn" path="res://resources/baseCharacter.gd" id="3_pu6o4"]
+[ext_resource type="Resource" uid="uid://cooeongpe3obu" path="res://resources/Attacks/hot_coals.tres" id="3_xae8s"]
 [ext_resource type="Texture2D" uid="uid://bplcv3d6t13d1" path="res://resources/Characters/19 v2.png" id="4_0vcc2"]
+[ext_resource type="Resource" uid="uid://c5qyp7qkianqr" path="res://resources/Attacks/flail.tres" id="4_12htf"]
+[ext_resource type="Resource" uid="uid://ctv8lw0xd5hdy" path="res://resources/Statuses/None.tres" id="4_s4rvr"]
+[ext_resource type="Resource" uid="uid://dyohf0leo5dun" path="res://resources/Attacks/wind_up.tres" id="5_ijtlh"]
 
 [resource]
 script = ExtResource("3_pu6o4")
 name = "Hot Stick"
 texture = ExtResource("4_0vcc2")
-moveset = Array[ExtResource("1_2003y")]([ExtResource("2_s4rvr"), ExtResource("2_s4rvr"), ExtResource("2_s4rvr"), ExtResource("2_s4rvr")])
+max_hp = 75
+attack = 15
+defense = 8
+speed = 4
+moveset = Array[ExtResource("1_2003y")]([ExtResource("2_s4rvr"), ExtResource("3_xae8s"), ExtResource("4_12htf"), ExtResource("5_ijtlh")])
+current_hp = 75
+current_attack = 15
+current_defense = 8
+current_speed = 4
+status = ExtResource("4_s4rvr")

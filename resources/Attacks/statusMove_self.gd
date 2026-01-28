@@ -1,6 +1,6 @@
 extends Attack
 
-func execute(attacker : Character, defender : Character, attacker_anim : AnimationPlayer, defender_anim : AnimationPlayer, defender_sound : AudioStreamPlayer, textbox : Panel, hpbar : ProgressBar):
+func execute(attacker : Character, defender : Character, attacker_anim : AnimationPlayer, defender_anim : AnimationPlayer, defender_sound : AudioStreamPlayer, textbox : Panel, hpbar : ProgressBar,tree: SceneTree, statusBox: Panel):
 	if self.mod > 1 :
 		match self.stat:
 			Stat.ATTACK:

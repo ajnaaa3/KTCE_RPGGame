@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dqpypm1akow8"]
+
+[ext_resource type="Script" uid="uid://55w6cbxr2y1n" path="res://resources/Statuses/burnStatus.gd" id="1_luh5q"]
+
+[resource]
+script = ExtResource("1_luh5q")
+name = "Burn"

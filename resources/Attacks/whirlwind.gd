@@ -1,6 +1,7 @@
 extends Attack
+@export var status: Status
 
-func execute(attacker : Character, defender : Character, attacker_anim : AnimationPlayer, defender_anim : AnimationPlayer, defender_sound : AudioStreamPlayer, textbox : Panel, hpbar : ProgressBar,tree: SceneTree, statusBox: Panel):
+func execute(attacker : Character, defender : Character, attacker_anim : AnimationPlayer, defender_anim : AnimationPlayer, defender_sound : AudioStreamPlayer, textbox : Panel, hpbar : ProgressBar, tree: SceneTree, statusBox: Panel):
 	if randf() < self.accuracy:
 		var stab : float = TypeInteractions.get_stab(self.type, attacker.type)
 		var effective = TypeInteractions.get_effectiveness(self.type, defender.type)
@@ -19,6 +20,11 @@ func execute(attacker : Character, defender : Character, attacker_anim : Animati
 			defender_sound.stream = load("res://assets/sounds/Soundfx/hit_weak.ogg")
 			defender_sound.play()
 		display_text(textbox, "%s takes %d damage!" % [defender.name, damage])
+		await tree.create_timer(1.0).timeout
+		if (defender.status.name == "None"):
+			defender.set_status(status)
+			display_text(textbox, "%s is confused!" % defender.name)
+			display_text(statusBox, "Current Status: %s" % defender.status.name)
 	else:
 		display_text(textbox, "%s missed!" % attacker.name)
 		

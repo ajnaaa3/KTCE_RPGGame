@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c61dm0sukhxxm"]
+
+[ext_resource type="Script" uid="uid://8tsbpgliaho4" path="res://resources/Attacks/slash.gd" id="1_bbiig"]
+[ext_resource type="Resource" uid="uid://bpvdsd8f2cy5w" path="res://resources/Statuses/Bleed.tres" id="2_2ty75"]
+
+[resource]
+script = ExtResource("1_bbiig")
+status = ExtResource("2_2ty75")
+name = "Spikes"
+power = 20
+accuracy = 0.8
+type = 1

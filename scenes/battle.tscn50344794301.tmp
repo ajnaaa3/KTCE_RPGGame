@@ -1,18 +1,16 @@
-[gd_scene load_steps=26 format=3 uid="uid://bvx4b1rqtup32"]
+[gd_scene load_steps=24 format=3 uid="uid://bvx4b1rqtup32"]
 
 [ext_resource type="Script" uid="uid://dwpc2b0m8du21" path="res://scenes/battle.gd" id="1_dn72j"]
+[ext_resource type="Resource" uid="uid://b7yjsbyv5smjm" path="res://resources/Characters/lilGuy.tres" id="2_4k1nj"]
 [ext_resource type="Texture2D" uid="uid://dpkfk7j82hlsn" path="res://assets/images/JWDLx5AZBtI.jpg" id="2_th188"]
 [ext_resource type="Script" uid="uid://c2ll3kk7yaihn" path="res://resources/baseCharacter.gd" id="2_v7i3o"]
-[ext_resource type="Resource" uid="uid://c435mj6n016d0" path="res://resources/Characters/Urgaid.tres" id="3_vceff"]
+[ext_resource type="Resource" uid="uid://b61yhfg8k3364" path="res://resources/Characters/gumbotron.tres" id="3_yahae"]
 [ext_resource type="Texture2D" uid="uid://dsvs00hbuq2yc" path="res://assets/images/Sprites/11.png" id="4_a12nh"]
 [ext_resource type="Resource" uid="uid://bcsla33o0efih" path="res://resources/Characters/HotStick.tres" id="5_03edq"]
-[ext_resource type="Resource" uid="uid://b7yjsbyv5smjm" path="res://resources/Characters/TickTick.tres" id="5_ekamt"]
 [ext_resource type="Texture2D" uid="uid://lju4uiedgigj" path="res://assets/images/Sprites/02.png" id="5_lpir7"]
 [ext_resource type="Script" uid="uid://h605uw8ba6gf" path="res://scenes/attacks.gd" id="6_f4pi3"]
 [ext_resource type="Script" uid="uid://ynmdk8y7b8qa" path="res://scenes/party.gd" id="7_66ngm"]
-[ext_resource type="Resource" uid="uid://b61yhfg8k3364" path="res://resources/Characters/Ithrit.tres" id="7_djc8l"]
 [ext_resource type="AudioStream" uid="uid://bhrpb4j04qm12" path="res://assets/sounds/output.ogg" id="8_f4pi3"]
-[ext_resource type="Resource" uid="uid://dsledb05s7wik" path="res://resources/Characters/Eviath.tres" id="8_h4dll"]
 [ext_resource type="AudioStream" uid="uid://clvsbwslrfjut" path="res://assets/sounds/Soundfx/hit.ogg" id="8_yahae"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a12nh"]
@@ -171,8 +169,8 @@ border_blend = true
 
 [node name="battle" type="Node2D"]
 script = ExtResource("1_dn72j")
-playersParty = Array[ExtResource("2_v7i3o")]([ExtResource("3_vceff"), ExtResource("5_03edq"), ExtResource("5_ekamt")])
-enemiesParty = Array[ExtResource("2_v7i3o")]([ExtResource("7_djc8l"), ExtResource("7_djc8l"), ExtResource("8_h4dll")])
+playersParty = Array[ExtResource("2_v7i3o")]([ExtResource("2_4k1nj"), ExtResource("3_yahae"), ExtResource("5_03edq")])
+enemiesParty = Array[ExtResource("2_v7i3o")]([ExtResource("3_yahae"), ExtResource("5_03edq"), ExtResource("2_4k1nj")])
 
 [node name="Background_fight" type="Sprite2D" parent="."]
 z_index = -100

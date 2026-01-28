@@ -46,6 +46,8 @@ func _ready() -> void:
 	$EnemyContainer/Sprite.texture = selectedEnemy.texture
 	$EnemyContainer/Name.text = selectedEnemy.name
 	$PlayerContainer/Name.text = selectedPlayer.name
+	display_text($EnemyContainer/StatusBox, "Current Status: %s" % selectedEnemy.status.name)
+	display_text($PlayerContainer/StatusBox, "Current Status: %s" % selectedPlayer.status.name)
 	party_panel.visible = false
 	party_panel.populate_members(playerParty, selectedPlayer)
 	party_panel.member_selected.connect(_on_player_switch_selected)
@@ -111,94 +113,164 @@ func transition_to(new_state: BattleState) -> void:
 				soundfx_player.stream = load("res://assets/sounds/Soundfx/switch.ogg")
 				soundfx_player.play()
 				await character_switch(true)
-				await enemy_attack.execute(selectedEnemy, selectedPlayer, enemy_anim, player_anim, soundfx_player, $Textbox, %PlayerHPBar)
-				await get_tree().create_timer(1.3).timeout
-				if selectedPlayer.current_hp < 1 :
-					character_down(selectedPlayer, playerParty, true)
-					return
+				if (selectedEnemy.status.name == "Confused" && randf() < 0.4):
+					display_text($Textbox, "%s missed due to confusion" % selectedEnemy.name)
+					selectedEnemy.status = load("res://resources/Statuses/None.tres")
+					display_text($EnemyContainer/StatusBox, "Current Status: %s" % selectedEnemy.status.name)
+					await get_tree().create_timer(1.3).timeout
+				else:
+					display_text($Textbox, "%s uses %s" % [selectedEnemy.name, enemy_attack.name])
+					await enemy_attack.execute(selectedEnemy, selectedPlayer, enemy_anim, player_anim, soundfx_player, $Textbox, %PlayerHPBar, get_tree(), $PlayerContainer/StatusBox)
+					await get_tree().create_timer(1.3).timeout
+					if selectedPlayer.current_hp < 1 :
+						character_down(selectedPlayer, playerParty, true)
+						return
 					
 			elif (selectedPlayer.current_speed > selectedEnemy.current_speed):
-				display_text($Textbox, "%s uses %s" % [selectedPlayer.name, player_attack.name])
-				await get_tree().create_timer(1.0).timeout
-				await player_attack.execute(selectedPlayer, selectedEnemy,player_anim, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar)
-				await get_tree().create_timer(1.3).timeout
-				if selectedEnemy.current_hp < 1 :
-					if battle_end() :
+				if (selectedPlayer.status.name == "Confused" && randf() < 0.4):
+					display_text($Textbox, "%s missed due to confusion" % selectedPlayer.name)
+					selectedPlayer.status = load("res://resources/Statuses/None.tres")
+					display_text($PlayerContainer/StatusBox, "Current Status: %s" % selectedPlayer.status.name)
+					await get_tree().create_timer(1.3).timeout
+				else:
+					display_text($Textbox, "%s uses %s" % [selectedPlayer.name, player_attack.name])
+					await get_tree().create_timer(1.0).timeout
+					await player_attack.execute(selectedPlayer, selectedEnemy,player_anim, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar, get_tree(), $EnemyContainer/StatusBox)
+					await get_tree().create_timer(1.3).timeout
+					if selectedEnemy.current_hp < 1 :
+						if battle_end() :
+							return
+						character_down(selectedEnemy, enemyParty, false)
 						return
-					character_down(selectedEnemy, enemyParty, false)
-					return
-				current_hpbar = %PlayerHPBar
-				display_text($Textbox, "%s uses %s" % [selectedEnemy.name, enemy_attack.name])
-				await get_tree().create_timer(1.0).timeout
-				await enemy_attack.execute(selectedEnemy, selectedPlayer, enemy_anim, player_anim, soundfx_player, $Textbox, %PlayerHPBar)
-				await get_tree().create_timer(1.3).timeout
-				if selectedPlayer.current_hp < 1 :
-					if battle_end() :
+				if (selectedEnemy.status.name == "Confused" && randf() < 0.4):
+					display_text($Textbox, "%s missed due to confusion" % selectedEnemy.name)
+					selectedEnemy.status = load("res://resources/Statuses/None.tres")
+					display_text($EnemyContainer/StatusBox, "Current Status: %s" % selectedEnemy.status.name)
+					await get_tree().create_timer(1.3).timeout
+				else:
+					display_text($Textbox, "%s uses %s" % [selectedEnemy.name, enemy_attack.name])
+					await get_tree().create_timer(1.0).timeout
+					await enemy_attack.execute(selectedEnemy, selectedPlayer, enemy_anim, player_anim, soundfx_player, $Textbox, %PlayerHPBar, get_tree(), $PlayerContainer/StatusBox)
+					await get_tree().create_timer(1.3).timeout
+					if selectedPlayer.current_hp < 1 :
+						if battle_end() :
+							return
+						character_down(selectedPlayer, playerParty, true)
 						return
-					character_down(selectedPlayer, playerParty, true)
-					return
 				
 			elif (selectedPlayer.current_speed < selectedEnemy.current_speed):
-				display_text($Textbox, "%s uses %s" % [selectedEnemy.name, enemy_attack.name])
-				await get_tree().create_timer(1.0).timeout
-				await enemy_attack.execute(selectedEnemy, selectedPlayer, enemy_anim, player_anim, soundfx_player, $Textbox, %PlayerHPBar)
-				await get_tree().create_timer(1.3).timeout
-				if selectedPlayer.current_hp < 1 :
-					if battle_end() :
+				if (selectedEnemy.status.name == "Confused" && randf() < 0.4):
+					display_text($Textbox, "%s missed due to confusion" % selectedEnemy.name)
+					selectedEnemy.status = load("res://resources/Statuses/None.tres")
+					display_text($EnemyContainer/StatusBox, "Current Status: %s" % selectedEnemy.status.name)
+					await get_tree().create_timer(1.3).timeout
+				else:
+					display_text($Textbox, "%s uses %s" % [selectedEnemy.name, enemy_attack.name])
+					await get_tree().create_timer(1.0).timeout
+					await enemy_attack.execute(selectedEnemy, selectedPlayer, enemy_anim, player_anim, soundfx_player, $Textbox, %PlayerHPBar, get_tree(), $PlayerContainer/StatusBox)
+					await get_tree().create_timer(1.3).timeout
+					if selectedPlayer.current_hp < 1 :
+						if battle_end() :
+							return
+						character_down(selectedPlayer, playerParty, true)
 						return
-					character_down(selectedPlayer, playerParty, true)
-					return
-				display_text($Textbox, "%s uses %s" % [selectedPlayer.name, player_attack.name])
-				await get_tree().create_timer(1.0).timeout
-				await player_attack.execute(selectedPlayer, selectedEnemy, player_anim, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar)
-				await get_tree().create_timer(1.3).timeout
-				if selectedEnemy.current_hp < 1 :
-					if battle_end() :
+				if (selectedPlayer.status.name == "Confused" && randf() < 0.4):
+					display_text($Textbox, "%s missed due to confusion" % selectedPlayer.name)
+					selectedPlayer.status = load("res://resources/Statuses/None.tres")
+					display_text($PlayerContainer/StatusBox, "Current Status: %s" % selectedPlayer.status.name)
+					await get_tree().create_timer(1.3).timeout
+				else:
+					display_text($Textbox, "%s uses %s" % [selectedPlayer.name, player_attack.name])
+					await get_tree().create_timer(1.0).timeout
+					await player_attack.execute(selectedPlayer, selectedEnemy, player_anim, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar, get_tree(), $EnemyContainer/StatusBox)
+					await get_tree().create_timer(1.3).timeout
+					if selectedEnemy.current_hp < 1 :
+						if battle_end() :
+							return
+						character_down(selectedEnemy, enemyParty, false)
 						return
-					character_down(selectedEnemy, enemyParty, false)
-					return
 				
 			elif (rng.randi_range(0, 100) < 50):
-				display_text($Textbox, "%s uses %s" % [selectedPlayer.name, player_attack.name])
-				await get_tree().create_timer(1.0).timeout
-				await player_attack.execute(selectedPlayer, selectedEnemy, player_anim, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar)
-				await get_tree().create_timer(1.3).timeout
-				if selectedEnemy.current_hp < 1 :
-					if battle_end() :
+				if (selectedPlayer.status.name == "Confused" && randf() < 0.4):
+					display_text($Textbox, "%s missed due to confusion" % selectedPlayer.name)
+					selectedPlayer.status = load("res://resources/Statuses/None.tres")
+					display_text($PlayerContainer/StatusBox, "Current Status: %s" % selectedPlayer.status.name)
+					await get_tree().create_timer(1.3).timeout
+				else:
+					display_text($Textbox, "%s uses %s" % [selectedPlayer.name, player_attack.name])
+					await get_tree().create_timer(1.0).timeout
+					await player_attack.execute(selectedPlayer, selectedEnemy, player_anim, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar, get_tree(), $EnemyContainer/StatusBox)
+					await get_tree().create_timer(1.3).timeout
+					if selectedEnemy.current_hp < 1 :
+						if battle_end() :
+							return
+						character_down(selectedEnemy, enemyParty, false)
 						return
-					character_down(selectedEnemy, enemyParty, false)
-					return
-				display_text($Textbox, "%s uses %s" % [selectedEnemy.name, enemy_attack.name])
-				await get_tree().create_timer(1.0).timeout
-				await enemy_attack.execute(selectedEnemy, selectedPlayer, enemy_anim, player_anim, soundfx_player, $Textbox, %PlayerHPBar)
-				await get_tree().create_timer(1.3).timeout
-				if selectedPlayer.current_hp < 1 :
-					if battle_end() :
+				if (selectedEnemy.status.name == "Confused" && randf() < 0.4):
+					display_text($Textbox, "%s missed due to confusion" % selectedEnemy.name)
+					selectedEnemy.status = load("res://resources/Statuses/None.tres")
+					display_text($EnemyContainer/StatusBox, "Current Status: %s" % selectedEnemy.status.name)
+					await get_tree().create_timer(1.3).timeout
+				else:
+					display_text($Textbox, "%s uses %s" % [selectedEnemy.name, enemy_attack.name])
+					await get_tree().create_timer(1.0).timeout
+					await enemy_attack.execute(selectedEnemy, selectedPlayer, enemy_anim, player_anim, soundfx_player, $Textbox, %PlayerHPBar, get_tree(), $PlayerContainer/StatusBox)
+					await get_tree().create_timer(1.3).timeout
+					if selectedPlayer.current_hp < 1 :
+						if battle_end() :
+							return
+						character_down(selectedPlayer, playerParty, true)
 						return
-					character_down(selectedPlayer, playerParty, true)
-					return
 				
 			else:
-				display_text($Textbox, "%s uses %s" % [selectedEnemy.name, enemy_attack.name])
-				await get_tree().create_timer(1.0).timeout
-				await enemy_attack.execute(selectedEnemy, selectedPlayer, enemy_anim, player_anim, soundfx_player, $Textbox, %PlayerHPBar)
-				await get_tree().create_timer(1.3).timeout
-				if selectedPlayer.current_hp < 1 :
-					if battle_end() :
+				if (selectedEnemy.status.name == "Confused" && randf() < 0.4):
+					display_text($Textbox, "%s missed due to confusion" % selectedEnemy.name)
+					selectedEnemy.status = load("res://resources/Statuses/None.tres")
+					display_text($EnemyContainer/StatusBox, "Current Status: %s" % selectedEnemy.status.name)
+					await get_tree().create_timer(1.3).timeout
+				else:
+					display_text($Textbox, "%s uses %s" % [selectedEnemy.name, enemy_attack.name])
+					await get_tree().create_timer(1.0).timeout
+					await enemy_attack.execute(selectedEnemy, selectedPlayer, enemy_anim, player_anim, soundfx_player, $Textbox, %PlayerHPBar, get_tree(), $PlayerContainer/StatusBox)
+					await get_tree().create_timer(1.3).timeout
+					if selectedPlayer.current_hp < 1 :
+						if battle_end() :
+							return
+						character_down(selectedPlayer, playerParty, true)
 						return
-					character_down(selectedPlayer, playerParty, true)
-					return
-				display_text($Textbox, "%s uses %s" % [selectedPlayer.name, player_attack.name])
-				await get_tree().create_timer(1.0).timeout
-				await player_attack.execute(selectedPlayer, selectedEnemy, player_anim, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar)
-				await get_tree().create_timer(1.3).timeout
-				if selectedEnemy.current_hp < 1 :
-					if battle_end() :
+				if (selectedPlayer.status.name == "Confused" && randf() < 0.4):
+					display_text($Textbox, "%s missed due to confusion" % selectedPlayer.name)
+					selectedPlayer.status = load("res://resources/Statuses/None.tres")
+					display_text($PlayerContainer/StatusBox, "Current Status: %s" % selectedPlayer.status.name)
+					await get_tree().create_timer(1.3).timeout
+				else:
+					display_text($Textbox, "%s uses %s" % [selectedPlayer.name, player_attack.name])
+					await get_tree().create_timer(1.0).timeout
+					await player_attack.execute(selectedPlayer, selectedEnemy, player_anim, enemy_anim, soundfx_player, $Textbox, %EnemyHPBar, get_tree(), $EnemyContainer/StatusBox)
+					await get_tree().create_timer(1.3).timeout
+					if selectedEnemy.current_hp < 1 :
+						if battle_end() :
+							return
+						character_down(selectedEnemy, enemyParty, false)
 						return
-					character_down(selectedEnemy, enemyParty, false)
-					return
 				
 			await get_tree().create_timer(1.0).timeout
+			if selectedEnemy.status.name != "None":
+				selectedEnemy.status.execute(selectedEnemy, enemy_anim, $Textbox, $%EnemyHPBar)
+				await get_tree().create_timer(1.0).timeout
+				if selectedEnemy.current_hp < 1 :
+							if battle_end() :
+								return
+							character_down(selectedEnemy, enemyParty, false)
+							return
+			if selectedPlayer.status.name != "None":
+				selectedPlayer.status.execute(selectedPlayer, player_anim, $Textbox, $%PlayerHPBar)
+				await get_tree().create_timer(1.0).timeout
+				if selectedPlayer.current_hp < 1 :
+							if battle_end() :
+								return
+							character_down(selectedPlayer, playerParty, true)
+							return
 			transition_to(BattleState.PLAYER_TURN)
 			
 		BattleState.PLAYER_WIN:
@@ -253,11 +325,13 @@ func character_switch(isPlayer : bool):
 	if isPlayer:
 		if selectedPlayer.current_hp > 0:
 			display_text($Textbox, "%s is out" % selectedPlayer.name)
+			selectedPlayer.set_status(load("res://resources/Statuses/None.tres"))
 			await get_tree().create_timer(1.0).timeout
 		selectedPlayer = newPlayerCharacter
 		set_health($PlayerContainer/PlayerHPBar, selectedPlayer.current_hp, selectedPlayer.max_hp)
 		$PlayerContainer/Sprite.texture = selectedPlayer.texture
 		$PlayerContainer/Name.text = selectedPlayer.name
+		display_text($PlayerContainer/StatusBox, "Current Status: %s" % selectedPlayer.status.name)
 		party_panel.populate_members(playerParty, selectedPlayer)
 		party_panel.member_selected.connect(_on_player_switch_selected)
 		attack_panel.populate_moves(selectedPlayer)
@@ -271,8 +345,10 @@ func character_switch(isPlayer : bool):
 	else:
 		if selectedEnemy.current_hp > 0:
 			display_text($Textbox, "%s is out" % selectedEnemy.name)
+			selectedEnemy.set_status(load("res://resources/Statuses/None.tres"))
 			await get_tree().create_timer(1.0).timeout
 		selectedEnemy = newEnemyCharacter
+		display_text($EnemyContainer/StatusBox, "Current Status: %s" % selectedEnemy.status.name)
 		set_health($EnemyContainer/EnemyHPBar, selectedEnemy.current_hp, selectedEnemy.max_hp)
 		$EnemyContainer/Sprite.texture = selectedEnemy.texture
 		$EnemyContainer/Name.text = selectedEnemy.name

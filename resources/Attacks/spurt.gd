@@ -19,6 +19,18 @@ func execute(attacker : Character, defender : Character, attacker_anim : Animati
 			defender_sound.stream = load("res://assets/sounds/Soundfx/hit_weak.ogg")
 			defender_sound.play()
 		display_text(textbox, "%s takes %d damage!" % [defender.name, damage])
+		await tree.create_timer(1.0).timeout
+		match self.stat:
+			Stat.ATTACK:
+				attacker.set_current_attack(round(defender.current_attack * self.mod))
+			Stat.DEFENSE:
+				attacker.set_current_defense(round(defender.current_defense * self.mod))
+			Stat.SPEED:
+				attacker.set_current_speed(round(defender.current_speed * self.mod))
+		defender_anim.play("debuff")
+		defender_sound.stream = load("res://assets/sounds/Soundfx/stat_down.ogg")
+		defender_sound.play()
+		display_text(textbox, "%s lowered $s" % [attacker.name, defender.name] + "'s %s" % self.stat)
 	else:
 		display_text(textbox, "%s missed!" % attacker.name)
 		

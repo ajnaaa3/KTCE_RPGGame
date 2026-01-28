@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c5n721q58kp1h"]
+
+[ext_resource type="Script" uid="uid://ngv655ipxdvk" path="res://resources/Attacks/spurt.gd" id="1_ctjkq"]
+
+[resource]
+script = ExtResource("1_ctjkq")
+name = "Spurt"
+stat = 2
+type = 2

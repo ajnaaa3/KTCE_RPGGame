@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Character" load_steps=9 format=3 uid="uid://c435mj6n016d0"]
+
+[ext_resource type="Script" uid="uid://da5gwh6uvs7j6" path="res://resources/baseAttack.gd" id="1_5cb1x"]
+[ext_resource type="Resource" uid="uid://20shkkwwqwxu" path="res://resources/Attacks/spores.tres" id="2_hyip5"]
+[ext_resource type="Resource" uid="uid://c61dm0sukhxxm" path="res://resources/Attacks/spikes.tres" id="3_6sav5"]
+[ext_resource type="Resource" uid="uid://c5qyp7qkianqr" path="res://resources/Attacks/flail.tres" id="4_411y0"]
+[ext_resource type="Resource" uid="uid://c1yusuiv46elb" path="res://resources/Attacks/growth.tres" id="5_jqnae"]
+[ext_resource type="Script" uid="uid://c2ll3kk7yaihn" path="res://resources/baseCharacter.gd" id="6_3io4i"]
+[ext_resource type="Resource" uid="uid://ctv8lw0xd5hdy" path="res://resources/Statuses/None.tres" id="7_n783u"]
+[ext_resource type="Texture2D" uid="uid://c0vxfksj60a50" path="res://assets/images/Sprites/31.png" id="8_uilyu"]
+
+[resource]
+script = ExtResource("6_3io4i")
+name = "Urgaid"
+texture = ExtResource("8_uilyu")
+max_hp = 74
+attack = 18
+defense = 5
+speed = 9
+type = 1
+moveset = Array[ExtResource("1_5cb1x")]([ExtResource("2_hyip5"), ExtResource("3_6sav5"), ExtResource("4_411y0"), ExtResource("5_jqnae")])
+status = ExtResource("7_n783u")

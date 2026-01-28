@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Character" load_steps=9 format=3 uid="uid://b61yhfg8k3364"]
+
+[ext_resource type="Script" uid="uid://da5gwh6uvs7j6" path="res://resources/baseAttack.gd" id="1_j0bv5"]
+[ext_resource type="Resource" uid="uid://qw0pa3brbdwv" path="res://resources/Attacks/Steamshot.tres" id="2_y3uv5"]
+[ext_resource type="Resource" uid="uid://cooeongpe3obu" path="res://resources/Attacks/hot_coals.tres" id="3_8b0wg"]
+[ext_resource type="Resource" uid="uid://c1av1f8yewj0" path="res://resources/Attacks/wash.tres" id="4_4nekr"]
+[ext_resource type="Resource" uid="uid://d4i15l2bkgu55" path="res://resources/Attacks/setAlight.tres" id="5_5m8vj"]
+[ext_resource type="Script" uid="uid://c2ll3kk7yaihn" path="res://resources/baseCharacter.gd" id="6_b6wu0"]
+[ext_resource type="Resource" uid="uid://ctv8lw0xd5hdy" path="res://resources/Statuses/None.tres" id="7_q2mjl"]
+[ext_resource type="Texture2D" uid="uid://cf56nlgyiswpw" path="res://assets/images/Sprites/28.png" id="8_of0bk"]
+
+[resource]
+script = ExtResource("6_b6wu0")
+name = "Ithrit"
+texture = ExtResource("8_of0bk")
+max_hp = 95
+attack = 25
+defense = 15
+moveset = Array[ExtResource("1_j0bv5")]([ExtResource("2_y3uv5"), ExtResource("3_8b0wg"), ExtResource("4_4nekr"), ExtResource("5_5m8vj")])
+status = ExtResource("7_q2mjl")

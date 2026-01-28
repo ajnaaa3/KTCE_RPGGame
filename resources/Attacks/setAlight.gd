@@ -1,4 +1,5 @@
 extends Attack
+@export var status: Status
 
 func execute(attacker : Character, defender : Character, attacker_anim : AnimationPlayer, defender_anim : AnimationPlayer, defender_sound : AudioStreamPlayer, textbox : Panel, hpbar : ProgressBar,tree: SceneTree, statusBox: Panel):
 	if randf() < self.accuracy:
@@ -19,6 +20,11 @@ func execute(attacker : Character, defender : Character, attacker_anim : Animati
 			defender_sound.stream = load("res://assets/sounds/Soundfx/hit_weak.ogg")
 			defender_sound.play()
 		display_text(textbox, "%s takes %d damage!" % [defender.name, damage])
+		await tree.create_timer(1.0).timeout
+		if (defender.status.name == "None" && randf() <= 1.0):
+			defender.set_status(status)
+			display_text(textbox, "%s burns!" % defender.name)
+			display_text(statusBox, "Current Status: %s" % defender.status.name)
 	else:
 		display_text(textbox, "%s missed!" % attacker.name)
 		

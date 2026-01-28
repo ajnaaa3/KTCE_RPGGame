@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bpvdsd8f2cy5w"]
+
+[ext_resource type="Script" uid="uid://khvhdnip0elf" path="res://resources/Statuses/bleedStatus.gd" id="1_rtecn"]
+
+[resource]
+script = ExtResource("1_rtecn")
+name = "Bleed"
