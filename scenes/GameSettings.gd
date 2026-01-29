@@ -3,6 +3,9 @@ extends Node
 var music_enabled: bool = true
 var sfx_enabled: bool = true
 var game_mode: String = "Versus PC"
+var playersParty: Array[Character] = []
+var enemiesParty: Array[Character] = []
+
 
 func set_music(value: bool):
 	music_enabled = value

@@ -1,86 +1,109 @@
-extends Node2D 
+extends Node2D
 
-# ===== Referenzen =====
+# ====================
+# UI-Referenzen
+# ====================
 
-@onready var music_player: AudioStreamPlayer2D = %BGMMusic 
+@onready var music_player: AudioStreamPlayer2D = %BGMMusic
 @onready var start_button: Button = %StartGameButton
+@onready var back_button: Button = %BackButton
+@onready var counter_label: Label = $StartButtonWrapper/SelectedCounterLabel
 
-# Unique Name für den Back Button (Rechtsklick auf BackButton -> Access as Unique Name)
-@onready var back_button: Button = %BackButton 
 
-@onready var player1_panel: Control = %Player1 
-@onready var player2_panel: Control = %Player2
-@onready var player3_panel: Control = %Player3
-@onready var player4_panel: Control = %Player4
 
-@onready var char_panels: Array[Control] = [
-	player1_panel, 
-	player2_panel, 
-	player3_panel, 
-	player4_panel 
-]
+# ====================
+# Character-Auswahl
+# ====================
 
-var selected_char_index: int = -1 
+var selected_slots: Array[CharacterSlot] = []
+const MAX_PLAYERS := 4
+
 
 func _ready() -> void:
+	# 1. Musik
 	if GameSettings.music_enabled:
 		music_player.play()
 	else:
 		music_player.stop()
 
+	# 2. Back Button
 	if back_button:
 		back_button.pressed.connect(_on_back_button_pressed)
 	else:
-		print("FEHLER: BackButton mit Unique Name '%' nicht gefunden!")
+		print("FEHLER: BackButton nicht gefunden")
 
+	# 3. Start Button
 	start_button.disabled = true
+	start_button.text = "Start Game"
 	start_button.pressed.connect(_on_start_game_pressed)
-	
-	for i in range(char_panels.size()):
-		var panel = char_panels[i]
-		panel.gui_input.connect(func(event): _handle_player_input(event, i))
-		_set_button_style(panel, false)
+
+	# Counter Label (Anzeige für Auswahl)
+	counter_label.text = "Selected: 0/4"
+	counter_label.visible = true
+
+	# 4. Character Slots verbinden (aus Quadrants)
+	for q in get_tree().get_nodes_in_group("quadrants"):
+		q.slot_selected.connect(_on_slot_selected)
 
 
-func _handle_player_input(event: InputEvent, index: int) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
-		_select_character(index)
+# ====================
+# Slot-Auswahl
+# ====================
 
-func _set_button_style(button: Control, is_selected: bool) -> void: 
-	if is_selected:
-		button.modulate = Color(0.7, 1.0, 0.7, 1.0)
+func _on_slot_selected(slot: CharacterSlot) -> void:
+	if slot in selected_slots:
+		selected_slots.erase(slot)
+		slot.set_selected(false)
 	else:
-		button.modulate = Color(1.0, 1.0, 1.0, 1.0) 
+		if selected_slots.size() >= MAX_PLAYERS:
+			return
+		selected_slots.append(slot)
+		slot.set_selected(true)
 
-func _select_character(index: int) -> void:
-	if index == selected_char_index:
-		selected_char_index = -1
+	_update_start_button()
+
+
+func _update_start_button() -> void:
+	var count := selected_slots.size()
+
+	if count > 0:
+		start_button.disabled = false
+		counter_label.visible = true
+		counter_label.text = "Selected: " + str(count) + "/4"
 	else:
-		selected_char_index = index
-		
-	for i in range(char_panels.size()):
-		_set_button_style(char_panels[i], i == selected_char_index)
-		
-	start_button.disabled = (selected_char_index == -1)
+		start_button.disabled = true
+		counter_label.visible = false
 
-# ===== Szenenwechsel-Callbacks =====
+
+# ====================
+# Szenenwechsel
+# ====================
 
 func _on_start_game_pressed() -> void:
-	if selected_char_index != -1:
-		
-		music_player.stop() 
-		var battle_scene_path = "res://scenes/battle.tscn"
-		
-		if ResourceLoader.exists(battle_scene_path):
-			get_tree().change_scene_to_file(battle_scene_path)
+	if selected_slots.is_empty():
+		return
+
+	music_player.stop()
+
+	var players_party: Array[Character] = []
+	for slot in selected_slots:
+		players_party.append(slot.character)
+
+	GameSettings.playersParty = players_party
+
+	print("PLAYERS PARTY:")
+	for c in players_party:
+		print("-", c.name)
+
+	get_tree().change_scene_to_file("res://scenes/battle.tscn")
+
 
 func _on_back_button_pressed() -> void:
 	print("Wechsel zum Menü...")
-	music_player.stop() 
-	
-	var menu_scene_path = "res://scenes/menu.tscn"
-	
+	music_player.stop()
+
+	var menu_scene_path := "res://scenes/menu.tscn"
 	if ResourceLoader.exists(menu_scene_path):
 		get_tree().change_scene_to_file(menu_scene_path)
 	else:
-		print("FEHLER: menu.tscn nicht gefunden!")
+		print("FEHLER: menu.tscn nicht gefunden")
