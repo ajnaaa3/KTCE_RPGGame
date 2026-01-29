@@ -42,7 +42,7 @@ func pick_random_characters(count: int) -> Array[Character]:
 func _ready() -> void:
 	
 	playersParty = GameSettings.playersParty
-	enemiesParty = pick_random_characters(4)
+	enemiesParty = pick_random_characters(GameSettings.game_mode)
 	playerParty = playersParty.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
 	enemyParty = enemiesParty.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
 	selectedPlayer = playerParty[0]

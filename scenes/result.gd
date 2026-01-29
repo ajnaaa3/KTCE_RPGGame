@@ -3,6 +3,7 @@ extends Control
 @onready var title_lbl: Label = %Title
 @onready var btn_restart: Button = %Restart
 @onready var btn_change: Button = %ChangeCharacter
+@onready var btn_menu: Button = %MainMenu
 @onready var btn_quit: Button = %Quit
 @onready var vbox: VBoxContainer = %VBoxContainer
 
@@ -31,6 +32,7 @@ func _ready() -> void:
 	btn_restart.pressed.connect(_on_restart)
 	btn_change.pressed.connect(_on_change_character)
 	btn_quit.pressed.connect(_on_quit)
+	btn_menu.pressed.connect(_on_main_menu)
 
 	btn_restart.grab_focus() 
 
@@ -45,6 +47,9 @@ func _on_restart() -> void:
 
 func _on_change_character() -> void:
 	get_tree().change_scene_to_file(CHARACTER_SCREEN_PATH)
+	
+func _on_main_menu() -> void:
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 func _on_quit() -> void:
 	get_tree().quit()

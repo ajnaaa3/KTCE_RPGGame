@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3506tyw8kdap"]
+[gd_scene load_steps=5 format=3 uid="uid://b3506tyw8kdap"]
 
 [ext_resource type="AudioStream" uid="uid://byv51q56weo27" path="res://assets/sounds/MenuMusik.ogg" id="1_532bo"]
 [ext_resource type="Script" uid="uid://c7nqqerub4ffk" path="res://scenes/result.gd" id="1_dtx8l"]
 [ext_resource type="Texture2D" uid="uid://4avrd681j7j7" path="res://assets/images/menuBackground.png" id="1_gd8ac"]
 [ext_resource type="FontFile" uid="uid://c0mwbiarmijd8" path="res://AsusRog-Regular.ttf" id="2_532bo"]
-[ext_resource type="Texture2D" uid="uid://lju4uiedgigj" path="res://assets/images/Sprites/02.png" id="5_ar46g"]
 
 [node name="Result" type="Control"]
 layout_mode = 3
@@ -59,6 +58,14 @@ theme_override_fonts/font = ExtResource("2_532bo")
 theme_override_font_sizes/font_size = 21
 text = "Change Character"
 
+[node name="MainMenu" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9677232, 0.5885531, 0.3278711, 1)
+theme_override_fonts/font = ExtResource("2_532bo")
+theme_override_font_sizes/font_size = 21
+text = "Main Menu"
+
 [node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -66,8 +73,3 @@ theme_override_colors/font_color = Color(0, 0.8776587, 0, 1)
 theme_override_fonts/font = ExtResource("2_532bo")
 theme_override_font_sizes/font_size = 21
 text = "Quit"
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(591, 505)
-scale = Vector2(2.708333, 2.5781248)
-texture = ExtResource("5_ar46g")

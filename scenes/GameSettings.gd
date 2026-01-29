@@ -2,7 +2,7 @@ extends Node
 
 var music_enabled: bool = true
 var sfx_enabled: bool = true
-var game_mode: String = "Versus PC"
+var game_mode: int = 4
 var playersParty: Array[Character] = []
 var enemiesParty: Array[Character] = []
 const ALL_CHARACTERS: Array[Character] = [

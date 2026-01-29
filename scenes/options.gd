@@ -11,8 +11,9 @@ const MAIN_MENU_PATH := "res://scenes/menu.tscn"
 
 func _ready() -> void:
 	option_mode.clear() 
-	option_mode.add_item("Versus PC")
-	option_mode.add_item("Multiplayer (2P)")
+	option_mode.add_item("Easy")
+	option_mode.add_item("Normal")
+	option_mode.add_item("Hard")
 	
 	_load_current_settings()
 
@@ -22,7 +23,13 @@ func _ready() -> void:
 func _load_current_settings() -> void:
 	check_sound.button_pressed = GameSettings.sfx_enabled
 	check_music.button_pressed = GameSettings.music_enabled
-	option_mode.selected = 1 if GameSettings.game_mode == "Multiplayer (2P)" else 0
+	match GameSettings.game_mode:
+		2:
+			option_mode.selected = 0
+		4:
+			option_mode.selected = 1
+		6:
+			option_mode.selected = 2
 
 func _on_back_pressed() -> void:
 	print("Abbruch: Zurück zum Hauptmenü...")
@@ -31,13 +38,22 @@ func _on_back_pressed() -> void:
 func _on_save_pressed() -> void:
 	var sfx_val = check_sound.button_pressed
 	var music_val = check_music.button_pressed
-	var game_mode_text = option_mode.get_item_text(option_mode.selected)
+	var game_mode : int
+	match option_mode.get_item_text(option_mode.selected):
+		"Easy":
+			game_mode = 2
+		"Normal":
+			game_mode = 4
+		"Hard":
+			game_mode = 6
+		
+		
 	
 	GameSettings.set_music(music_val)
 	GameSettings.sfx_enabled = sfx_val
-	GameSettings.game_mode = game_mode_text
+	GameSettings.game_mode = game_mode
 	
-	print("Gespeichert: SFX: ", sfx_val, " | Musik: ", music_val, " | Mode: ", game_mode_text)
+	print("Gespeichert: SFX: ", sfx_val, " | Musik: ", music_val, " | Mode: ", game_mode)
 	
 	_change_to_main_menu()
 
