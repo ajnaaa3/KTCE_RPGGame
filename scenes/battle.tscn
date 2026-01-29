@@ -211,21 +211,6 @@ offset_right = 1147.0
 offset_bottom = 133.0
 script = ExtResource("7_66ngm")
 
-[node name="MemberButton1" type="Button" parent="PlayerPanel/Party"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Attack 3"
-
-[node name="MemberButton2" type="Button" parent="PlayerPanel/Party"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Attack 3"
-
-[node name="MemberButton3" type="Button" parent="PlayerPanel/Party"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Attack 3"
-
 [node name="Textbox" type="Panel" parent="PlayerPanel"]
 layout_mode = 0
 offset_top = 2.0

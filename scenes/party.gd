@@ -2,38 +2,36 @@ extends HBoxContainer
 
 signal member_selected(index : int)
 
-
-@onready var buttons : Array[Node] = get_children()
+var buttons: Array[Button] = []
 
 func populate_members(party: Array, currentCharacter: Character) -> void:
-	for i in range(buttons.size()):
-		buttons[i].visible = false
-
-		if buttons[i].pressed.is_connected(_on_member_selected):
-			buttons[i].pressed.disconnect(_on_member_selected)
-
-		if buttons[i].pressed.is_connected(on_current_party_member_selected):
-			buttons[i].pressed.disconnect(on_current_party_member_selected)
-
-		if i >= party.size():
-			continue
-
+	for btn in buttons:
+		remove_child(btn)
+		btn.queue_free()
+		if btn.is_connected("pressed", _on_member_selected):
+			btn.pressed.disconnect(_on_member_selected)
+		if btn.is_connected("pressed", on_current_party_member_selected):
+			btn.pressed.disconnect(on_current_party_member_selected)
+	buttons.clear()
+	
+	for i in range(party.size()):
 		var character: Character = party[i]
-
-		buttons[i].visible = true
-		buttons[i].text = character.name
-		buttons[i].disabled = false
-
+		var btn = Button.new()
+		
+		btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		btn.custom_minimum_size = Vector2(100, 40)
+		
+		btn.text = character.name
+		btn.disabled = (character == currentCharacter) or (character.current_hp <= 0)
+		
 		if character == currentCharacter:
-			buttons[i].text = "%s (In Battle)" % character.name
-			buttons[i].disabled = true
-			buttons[i].pressed.connect(on_current_party_member_selected)
+			btn.text += " (In Battle)"
+			btn.pressed.connect(on_current_party_member_selected)
 		else:
-			buttons[i].pressed.connect(_on_member_selected.bind(i))
-
-		if character.current_hp <= 0:
-			buttons[i].disabled = true
-
+			btn.pressed.connect(_on_member_selected.bind(i))
+		
+		add_child(btn)
+		buttons.append(btn)
 
 			
 func on_current_party_member_selected():

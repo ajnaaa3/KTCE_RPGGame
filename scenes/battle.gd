@@ -3,12 +3,21 @@ class_name Battle
 
 signal textbox_closed
 
-@export var playersParty: Array[Character]
-@export var enemiesParty: Array[Character]
+var playersParty: Array[Character] = GameSettings.playersParty
+var enemiesParty: Array[Character]
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var player_attack: Attack
 var enemy_attack: Attack
+
+var playerParty: Array[Character]
+var enemyParty: Array[Character]
+
+var selectedPlayer: Character
+var selectedEnemy: Character
+
+var newPlayerCharacter: Character
+var newEnemyCharacter: Character
 
 enum BattleState { PLAYER_TURN, ENEMY_TURN, RESOLVE_ATTACKS, PLAYER_WIN, PLAYER_LOSE }
 var current_state: BattleState = BattleState.PLAYER_TURN
@@ -25,17 +34,22 @@ var defeat_music: String = "res://assets/sounds/defeat.ogg"
 @onready var soundfx_player: AudioStreamPlayer = $SoundFXPlayer
 @onready var switch_button: Button = $PlayerPanel/SwitchButton
 
-@onready var playerParty: Array[Character] = playersParty.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
-@onready var enemyParty: Array[Character] = enemiesParty.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
-
-@onready var selectedPlayer: Character = playerParty[0]
-@onready var selectedEnemy: Character = enemyParty[0]
-
-@onready var newPlayerCharacter: Character = selectedPlayer
-@onready var newEnemyCharacter: Character = selectedEnemy
-
-
+func pick_random_characters(count: int) -> Array[Character]:
+	var pool := GameSettings.ALL_CHARACTERS.duplicate()
+	pool.shuffle()                      
+	return pool.slice(0, min(count, pool.size()))
+	
 func _ready() -> void:
+	
+	playersParty = GameSettings.playersParty
+	enemiesParty = pick_random_characters(4)
+	playerParty = playersParty.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
+	enemyParty = enemiesParty.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
+	selectedPlayer = playerParty[0]
+	selectedEnemy = enemyParty[0]
+	newPlayerCharacter = selectedPlayer
+	newEnemyCharacter = selectedEnemy
+	
 	for member in playerParty:
 		member.set_current_hp(member.max_hp)
 		member.set_current_attack(member.attack)

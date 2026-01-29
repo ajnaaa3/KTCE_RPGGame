@@ -5,7 +5,16 @@ var sfx_enabled: bool = true
 var game_mode: String = "Versus PC"
 var playersParty: Array[Character] = []
 var enemiesParty: Array[Character] = []
-
+const ALL_CHARACTERS: Array[Character] = [
+	preload("res://resources/Characters/Eviath.tres"), 
+	preload("res://resources/Characters/gumbotron.tres"), 
+	preload("res://resources/Characters/HotStick.tres"), 
+	preload("res://resources/Characters/Ithrit.tres"),
+	preload("res://resources/Characters/Krabble.tres"),
+	preload("res://resources/Characters/lilGuy.tres"),
+	preload("res://resources/Characters/TickTick.tres"),
+	preload("res://resources/Characters/Urgaid.tres")
+]
 
 func set_music(value: bool):
 	music_enabled = value
